@@ -13,20 +13,18 @@
     
     <style>
         .seal-mark {
-            font-family: 'Noto Serif TC', serif; /* Heavy Traditional Chinese */
-            color: #A83F39; /* Cinnabar Red (The Stamp Color) */
+            font-family: 'Noto Serif TC', serif; 
+            color: #A83F39; 
             font-weight: 900;
             opacity: 0.85;
             display: inline-block;
-            margin-right: 1rem;
+            margin-right: 0.5rem;
             vertical-align: middle;
             position: relative;
             top: -2px;
-            /* Simulates the worn edge of a stone seal */
             filter: url(#noiseFilter); 
         }
         
-        /* Background Watermark Character */
         .watermark-char {
             position: absolute;
             top: 15vh;
@@ -114,81 +112,120 @@
                     </p>
                 </div>
 
-                <div class="star-chart">
+                <div class="sky-panel">
+                    <svg class="constellation-svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+                        <path class="star-lines" d="
+                            M 100 350 L 220 300 
+                            L 320 280 L 450 250 
+                            L 470 380 L 650 360 
+                            L 650 230 L 450 250
+                        " />
+                        
+                        <line x1="650" y1="230" x2="650" y2="50" class="pointer-line" />
+
+                        <circle cx="100" cy="350" r="4" class="star blue-white" />
+                        
+                        <circle cx="220" cy="300" r="4" class="star white" />
+                        
+                        <circle cx="320" cy="280" r="5" class="star white bright" />
+                        
+                        <circle cx="450" cy="250" r="4" class="star white" />
+                        
+                        <circle cx="470" cy="380" r="4" class="star white" />
+                        
+                        <circle cx="650" cy="360" r="6" class="star blue-white bright" />
+                        
+                        <circle cx="650" cy="230" r="6" class="star amber" />
+
+                        <circle cx="650" cy="50" r="8" class="star polaris-star" />
+                    </svg>
                     
-                    <svg class="constellation-lines" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
-                        <line x1="700" y1="200" x2="700" y2="350" /> <line x1="700" y1="350" x2="550" y2="350" /> <line x1="550" y1="350" x2="520" y2="200" /> <line x1="520" y1="200" x2="700" y2="200" /> <line x1="520" y1="200" x2="400" y2="220" /> <line x1="400" y1="220" x2="250" y2="250" /> <line x1="250" y1="250" x2="100" y2="350" /> <line x1="700" y1="200" x2="700" y2="50" class="pointer-line" /> </svg>
+                    <div class="polaris-label">
+                        <span class="ancient-label">北極星</span>
+                        <span class="eng-label">POLARIS</span>
+                    </div>
+                </div>
 
-                    <div class="star-node polaris-node" style="left: 70%; top: 8.3%;">
-                        <div class="star polaris twinkling"></div>
-                        <div class="label-box top-label">
-                            <span class="ancient-name">北極星</span>
-                            <span class="star-title">UNTITLED TIME</span>
-                            <span class="star-role">The North Star</span>
+                <div class="team-manifest">
+                    
+                    <div class="team-card polaris-card">
+                        <div class="card-header">
+                            <span class="star-dot polaris-dot"></span>
+                            <span class="star-proper-name">POLARIS &middot; <span class="chn-name">北極星</span></span>
                         </div>
+                        <h3>The Untitled Time Project</h3>
+                        <p class="role">The North Star</p>
+                        <p class="blurb">A vessel for deep time inquiry.</p>
                     </div>
 
-                    <div class="star-node" style="left: 70%; top: 33.3%;">
-                        <div class="star dubhe"></div>
-                        <div class="label-box right-label">
-                            <span class="star-code">Tian Shu</span>
-                            <h3>Ran Yang</h3>
-                            <span class="star-role">Physics & Systems</span>
+                    <div class="team-card">
+                        <div class="card-header">
+                            <span class="star-dot amber-dot"></span>
+                            <span class="star-proper-name">DUBHE &middot; <span class="chn-name">天樞</span></span>
                         </div>
+                        <h3>Ran Yang</h3>
+                        <p class="role">The Pivot &middot; Physics</p>
+                        <p class="blurb">Anchor of the constellation. Connecting the laws of thermodynamics to the flow of human memory.</p>
                     </div>
 
-                    <div class="star-node" style="left: 70%; top: 58.3%;">
-                        <div class="star merak bright-pulse"></div>
-                        <div class="label-box right-label">
-                            <span class="star-code">Tian Xuan</span>
-                            <h3>Elizabeth Mead</h3>
-                            <span class="star-role">Art & Sculpture</span>
+                    <div class="team-card">
+                        <div class="card-header">
+                            <span class="star-dot blue-dot"></span>
+                            <span class="star-proper-name">MERAK &middot; <span class="chn-name">天璇</span></span>
                         </div>
+                        <h3>Elizabeth Mead</h3>
+                        <p class="role">The Form &middot; Art</p>
+                        <p class="blurb">Giving shape to the invisible. Translating 100 years of time into physical material and space.</p>
                     </div>
 
-                    <div class="star-node" style="left: 55%; top: 58.3%;">
-                        <div class="star phecda"></div>
-                        <div class="label-box bottom-label">
-                            <span class="star-code">Tian Ji</span>
-                            <h3>Camille Andrews</h3>
-                            <span class="star-role">Stewardship</span>
+                    <div class="team-card">
+                        <div class="card-header">
+                            <span class="star-dot white-dot"></span>
+                            <span class="star-proper-name">PHECDA &middot; <span class="chn-name">天璣</span></span>
                         </div>
+                        <h3>Camille Andrews</h3>
+                        <p class="role">The Wisdom &middot; Stewardship</p>
+                        <p class="blurb">Guardian of the archive. Ensuring the vessel survives the entropy of the institution.</p>
                     </div>
 
-                    <div class="star-node" style="left: 52%; top: 33.3%;">
-                        <div class="star megrez"></div>
-                        <div class="label-box top-label">
-                            <span class="star-code">Tian Quan</span>
-                            <h3>Jon Pineda</h3>
-                            <span class="star-role">Narrative</span>
+                    <div class="team-card">
+                        <div class="card-header">
+                            <span class="star-dot white-dot"></span>
+                            <span class="star-proper-name">MEGREZ &middot; <span class="chn-name">天權</span></span>
                         </div>
+                        <h3>Jon Pineda</h3>
+                        <p class="role">The Balance &middot; Narrative</p>
+                        <p class="blurb">Weaving the story. Finding the words that will still hold meaning in 2126.</p>
                     </div>
 
-                    <div class="star-node" style="left: 40%; top: 36.6%;">
-                        <div class="star alioth"></div>
-                        <div class="label-box bottom-label">
-                            <span class="star-code">Yu Heng</span>
-                            <h3>Harmony Dalgleish</h3>
-                            <span class="star-role">Biology</span>
+                    <div class="team-card">
+                        <div class="card-header">
+                            <span class="star-dot white-dot"></span>
+                            <span class="star-proper-name">ALIOTH &middot; <span class="chn-name">玉衡</span></span>
                         </div>
+                        <h3>Harmony Dalgleish</h3>
+                        <p class="role">The Scope &middot; Biology</p>
+                        <p class="blurb">The voice of the tree. Understanding the biological clock that ticks slower than our own.</p>
                     </div>
 
-                    <div class="star-node" style="left: 25%; top: 41.6%;">
-                        <div class="star mizar"></div>
-                        <div class="label-box bottom-label">
-                            <span class="star-code">Kai Yang</span>
-                            <h3>Monica Seger</h3>
-                            <span class="star-role">Humanities</span>
+                    <div class="team-card">
+                        <div class="card-header">
+                            <span class="star-dot white-dot"></span>
+                            <span class="star-proper-name">MIZAR &middot; <span class="chn-name">開陽</span></span>
                         </div>
+                        <h3>Monica Seger</h3>
+                        <p class="role">The Heat &middot; Humanities</p>
+                        <p class="blurb">The cultural bridge. Connecting the soil of Italy to the forests of Virginia.</p>
                     </div>
 
-                    <div class="star-node" style="left: 10%; top: 58.3%;">
-                        <div class="star alkaid"></div>
-                        <div class="label-box bottom-label">
-                            <span class="star-code">Yao Guang</span>
-                            <h3>Jonah Goldwater</h3>
-                            <span class="star-role">Metaphysics</span>
+                    <div class="team-card">
+                        <div class="card-header">
+                            <span class="star-dot blue-dot"></span>
+                            <span class="star-proper-name">ALKAID &middot; <span class="chn-name">搖光</span></span>
                         </div>
+                        <h3>Jonah Goldwater</h3>
+                        <p class="role">The Light &middot; Metaphysics</p>
+                        <p class="blurb">The philosophical query. Asking why "We" matters in a universe of indifference.</p>
                     </div>
 
                 </div>
@@ -216,7 +253,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('h1, h2, p, blockquote, .team-member, li, .intro-quote').forEach((el) => {
+        document.querySelectorAll('h1, h2, p, blockquote, .team-card, li, .intro-quote').forEach((el) => {
             el.classList.add('fade-in-up');
             observer.observe(el);
         });

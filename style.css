@@ -1,16 +1,8 @@
 :root {
-    /* The Paper: Warm, fibrous, ancient */
     --bg-color: #F3F1EB; 
     --paper-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    
-    /* The Ink: Not black, but dried charcoal */
     --ink-color: #1a1a1a; 
-    --ink-wash: rgba(20, 20, 20, 0.7);
-    
-    /* The Bamboo: Deep organic green/brown for accents */
     --bamboo-shadow: #3C3830; 
-    
-    /* Typography */
     --font-serif: 'Cormorant Garamond', serif; 
     --font-mono: 'Space Mono', monospace;
 }
@@ -35,7 +27,6 @@ h1 {
     font-size: clamp(3.5rem, 8vw, 7rem);
     letter-spacing: -0.04em;
     line-height: 0.95;
-    color: var(--ink-color);
     margin-bottom: 2rem;
 }
 
@@ -47,7 +38,7 @@ h2 {
     display: inline-block;
 }
 
-.meta-data, .marker, .role, .star-code, .star-role {
+.meta-data, .marker, .role-meta {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     text-transform: uppercase;
@@ -88,248 +79,176 @@ h2 {
     opacity: 0.6;
 }
 
-.text-body {
-    flex: 1;
-    max-width: 800px;
-}
+.text-body { flex: 1; max-width: 800px; }
 
 blockquote {
     font-size: 2.2rem;
     font-style: italic;
     line-height: 1.4;
     margin: 4rem 0;
-    padding-left: 0;
     position: relative;
     color: var(--bamboo-shadow);
 }
-
 blockquote::before {
-    content: "“";
-    font-size: 6rem;
-    position: absolute;
-    left: -4rem;
-    top: -2rem;
-    opacity: 0.1;
-    font-family: serif;
+    content: "“"; font-size: 6rem; position: absolute; left: -4rem; top: -2rem; opacity: 0.1;
 }
 
-.inverted {
-    background-color: #181818; 
-    color: #CCC;
-}
+.inverted { background-color: #181818; color: #CCC; }
 .inverted h2, .inverted p { color: #E0E0E0; text-shadow: none; }
 
 /* ANIMATIONS */
 .fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 0; transform: translateY(30px);
     transition: opacity 1.8s ease-out, transform 1.8s ease-out;
 }
 .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
 /* =========================================
-   CONSTELLATION SECTION (The Fix)
+   CONSTELLATION SECTION
    ========================================= */
 .constellation-section {
     position: relative;
-    padding: 8rem 5vw 12rem 5vw;
-    background: radial-gradient(circle at 70% 20%, #1a1a1a, #000); /* Center glow near Polaris */
+    padding: 6rem 5vw 10rem 5vw;
+    background: radial-gradient(circle at 50% 10%, #2a2a2a, #000);
     color: #fff;
     min-height: 100vh;
-    overflow: hidden;
 }
 
-.star-container-full {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-}
+.star-container-full { max-width: 1000px; margin: 0 auto; }
 
 .intro-quote {
-    font-size: 1.6rem;
-    font-style: italic;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 6rem;
-    margin-left: 200px; /* Aligns with text body of other sections */
-    max-width: 800px;
-    border-left: 1px solid rgba(168, 63, 57, 0.5);
-    padding-left: 2rem;
+    font-size: 1.4rem; font-style: italic; color: rgba(255,255,255,0.7);
+    margin-bottom: 4rem; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto;
 }
 
-/* THE STAR CHART CONTAINER */
-.star-chart {
+/* PART A: THE SKY PANEL (Visual Only) */
+.sky-panel {
     position: relative;
     width: 100%;
-    /* Maintain aspect ratio: Height is 60% of width */
-    padding-bottom: 60%; 
+    margin-bottom: 6rem;
+    text-align: center;
 }
 
-/* SVG LINES LAYER */
-.constellation-lines {
-    position: absolute;
-    top: 0;
-    left: 0;
+.constellation-svg {
     width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
+    max-width: 600px;
+    height: auto;
+    overflow: visible;
 }
 
-.constellation-lines line {
+.star-lines {
     stroke: rgba(255, 255, 255, 0.15);
-    stroke-width: 1px;
+    stroke-width: 1;
+    fill: none;
 }
 
 .pointer-line {
-    stroke-dasharray: 8, 4;
-    stroke: rgba(168, 63, 57, 0.5); /* Cinnabar Red Pointer */
+    stroke: rgba(168, 63, 57, 0.4);
+    stroke-dasharray: 5, 5;
+    stroke-width: 1;
 }
 
-/* STARS & NODES */
-.star-node {
+/* Star Styles */
+.star { 
+    /* The Twinkle is now optical, not physical */
+    animation: twinkle 4s infinite ease-in-out alternate; 
+    transform-origin: center;
+}
+.star.bright { filter: drop-shadow(0 0 4px rgba(255,255,255,0.8)); }
+
+/* Real Spectral Colors */
+.star.blue-white { fill: #dbe9ff; }
+.star.white { fill: #ffffff; }
+.star.amber { fill: #ffddaa; filter: drop-shadow(0 0 5px rgba(255, 221, 170, 0.4)); }
+.star.polaris-star { 
+    fill: #fffcd1; 
+    /* Polaris pulse is now just brightness/glow, not scale */
+    animation: pulse 5s infinite ease-in-out;
+}
+
+/* Text label under Polaris */
+.polaris-label {
     position: absolute;
-    transform: translate(-50%, -50%); /* Centers the node exactly on the coordinate */
-    z-index: 5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: 50px; left: 50%; 
+    transform: translateX(180px); 
+    text-align: left;
+}
+.ancient-label {
+    display: block; font-family: 'Noto Serif TC', serif; color: #A83F39; font-size: 1.2rem;
+}
+.eng-label {
+    font-family: var(--font-mono); font-size: 0.7rem; color: #fff; letter-spacing: 0.2em;
 }
 
-.star {
-    width: 8px;
-    height: 8px;
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.3);
-    transition: transform 0.3s ease;
-    cursor: pointer;
+/* PART B: THE TEAM MANIFEST (List) */
+.team-manifest {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 4rem;
 }
 
-/* Elizabeth (Merak) - The Brightest */
-.star.bright-pulse {
-    width: 14px;
-    height: 14px;
-    box-shadow: 0 0 25px 8px rgba(255, 255, 255, 0.6);
-    animation: pulseGlow 4s infinite alternate;
+.team-card {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Polaris - The North Star */
-.star.polaris {
-    width: 12px;
-    height: 12px;
-    background-color: #A83F39;
-    box-shadow: 0 0 30px 10px rgba(168, 63, 57, 0.4);
-    animation: twinkle 5s infinite ease-in-out;
+.card-header {
+    display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem;
 }
 
-/* ANIMATIONS */
-@keyframes pulseGlow {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(1.2); opacity: 0.8; }
+.star-dot {
+    width: 6px; height: 6px; border-radius: 50%; display: inline-block;
 }
+.star-dot.amber-dot { background-color: #ffddaa; box-shadow: 0 0 4px #ffddaa; }
+.star-dot.blue-dot { background-color: #dbe9ff; box-shadow: 0 0 4px #dbe9ff; }
+.star-dot.white-dot { background-color: #fff; }
+.star-dot.polaris-dot { background-color: #A83F39; box-shadow: 0 0 6px #A83F39; }
 
-@keyframes twinkle {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.9); }
-}
-
-/* LABELS (Text next to stars) */
-.label-box {
-    position: absolute;
-    width: 200px;
-    opacity: 0; /* Hidden by default */
-    transform: translateY(10px);
-    transition: all 0.4s ease;
-    pointer-events: none;
-}
-
-/* Show labels on hover OR always show names for key stars */
-.star-node:hover .label-box, .polaris-node .label-box {
-    opacity: 1;
-    transform: translateY(0);
-}
-/* Optional: Always show specific labels lightly */
-.label-box { opacity: 0.7; } 
-.star-node:hover .label-box { opacity: 1; z-index: 10; }
-
-/* Label Positioning relative to the dot */
-.right-label { left: 25px; text-align: left; }
-.bottom-label { top: 20px; text-align: center; }
-.top-label { bottom: 25px; text-align: center; }
-
-.label-box h3 {
-    font-size: 1.1rem;
-    margin: 0;
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0,0,0,0.8);
-}
-.star-code {
-    display: block;
-    color: #A83F39;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    margin-bottom: 3px;
-}
-.star-role {
-    color: #aaa;
-    font-size: 0.7rem;
-}
-.ancient-name {
-    font-family: 'Noto Serif TC', serif;
-    color: #A83F39;
-    font-size: 1.4rem;
-    display: block;
-}
-.star-title {
-    font-family: var(--font-mono);
-    letter-spacing: 0.2em;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 5px;
-}
-
-/* FOOTER */
-footer {
-    padding: 6rem 10vw;
-    background-color: #181818;
-    color: #666;
+.star-proper-name {
+    font-family: var(--font-mono); 
+    color: rgba(255,255,255,0.9);
     font-size: 0.8rem;
-    text-align: center;
+    letter-spacing: 0.1em;
 }
-.contact-link { color: #fff; text-decoration: none; border-bottom: 1px solid #444; }
 
-/* MOBILE RESPONSIVENESS */
+.chn-name {
+    font-family: 'Noto Serif TC', serif; 
+    color: #A83F39; 
+    font-size: 1rem;
+    margin-left: 5px;
+}
+
+.team-card h3 {
+    font-size: 1.6rem; color: #fff; margin-bottom: 0.4rem; text-shadow: none;
+    font-weight: 400;
+}
+
+.team-card .role {
+    font-family: var(--font-mono); color: rgba(255,255,255,0.5); font-size: 0.7rem; margin-bottom: 1rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+.team-card .blurb {
+    font-size: 1rem; color: #aaa; line-height: 1.5; font-style: italic;
+}
+
+/* NEW ANIMATIONS: OPTICAL, NOT PHYSICAL */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.8; filter: brightness(1); }
+    50% { opacity: 0.4; filter: brightness(0.7); }
+}
+
+@keyframes pulse {
+    0% { filter: drop-shadow(0 0 5px rgba(255, 240, 150, 0.4)); opacity: 0.9; }
+    50% { filter: drop-shadow(0 0 15px rgba(255, 240, 150, 0.8)); opacity: 1; }
+    100% { filter: drop-shadow(0 0 5px rgba(255, 240, 150, 0.4)); opacity: 0.9; }
+}
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
-    .constellation-section { padding: 4rem 5%; height: auto; }
-    .intro-quote { margin-left: 0; font-size: 1.2rem; }
-    
-    /* Hide the visual map on mobile */
-    .constellation-lines, .star, .watermark-char { display: none; }
-    
-    /* Stack the content vertically */
-    .star-chart { padding-bottom: 0; height: auto; display: flex; flex-direction: column; gap: 2rem; }
-    
-    .star-node {
-        position: relative !important;
-        left: auto !important;
-        top: auto !important;
-        transform: none !important;
-        display: block;
-        margin-bottom: 2rem;
-        border-left: 2px solid #333;
-        padding-left: 1rem;
-    }
-
-    .label-box {
-        position: relative;
-        opacity: 1;
-        width: 100%;
-        text-align: left !important;
-        left: auto !important;
-        top: auto !important;
-        bottom: auto !important;
-    }
-    
-    .star-code { color: #666; }
-    .polaris-node { order: -1; margin-bottom: 4rem; border-left: 2px solid #A83F39; }
+    .constellation-section { padding: 4rem 5%; }
+    .polaris-label { left: 70%; top: 10%; transform: none; }
+    .team-manifest { grid-template-columns: 1fr; gap: 2rem; }
 }
