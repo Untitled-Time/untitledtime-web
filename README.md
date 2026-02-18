@@ -11,13 +11,16 @@ We are currently witnessing two simultaneous accelerations: the **Artemis II** m
 
 ---
 
-## Why This Matters (The Executive Case)
+## The Three Dimensions of Inquiry
 
-### 1. The Crisis of Patience (Templeton Inquiry)
-The John Templeton Foundation seeks to understand "Human Flourishing." True flourishing requires a temporal horizon longer than a fiscal quarter or a political cycle. We are experiencing a "crisis of patience." By creating a project that matures only in a century, we force a return to "Deep Time"—the only scale on which spiritual and character virtues truly grow.
+### 1. The Existential Dimension: Human Flourishing in Deep Time
+The "Crisis of Patience" is not a technical problem; it is a spiritual one. True human flourishing requires a temporal horizon longer than a fiscal quarter or a political cycle. By architecting a project that matures only in a century, we force a return to "Deep Time"—the only scale on which character, virtue, and legacy truly grow. We are asking what it means to be human when we are no longer defined by our labor.
 
-### 2. The Archive as Active Agent (Mellon Framework)
-The Mellon Foundation champions "Public Knowledge." Traditionally, archives are where thoughts go to rest. **Untitled Time** reimagines the archive as an active, living participant in the community. Drawing inspiration from the *Future Library* in Oslo, we treat the W&M College Woods and Special Collections not as a warehouse, but as a "Slow Vessel" for the next century of public thought.
+### 2. The Institutional Dimension: The Archive as an Active Agent
+In the 21st century, libraries and archives are often treated as "warehouses of the past." **Untitled Time** reimagines the archive as an active, living vessel. Drawing inspiration from the *Future Library* in Oslo, we treat the William & Mary College Woods and Special Collections as a "Slow Vessel." We are not just storing knowledge; we are stewarding a 100-year conversation between the present and a future we will never see.
+
+### 3. The Socio-Economic Dimension: The Post-Labor Mandate
+As AI and automation decouple "income" from "meaning," humanity faces a dignity vacuum. If the 20th century was about the speed of the Rocket (escape), the 21st century must be about the roots of the Tree (stewardship). This project provides the intellectual and physical infrastructure for a society that must learn to find value in stillness and long-duration thinking.
 
 ---
 
