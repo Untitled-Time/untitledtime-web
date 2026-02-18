@@ -1,177 +1,340 @@
 :root {
-    --bg-color: #F4F1EA; /* Old Paper */
-    --text-color: #1A1A1A; /* Deep Charcoal */
-    --accent-color: #2F4F4F; /* Dark Slate/Spruce */
-    --tech-color: #666; /* Grey for metadata */
+    /* The Paper: Warm, fibrous, ancient */
+    --bg-color: #F3F1EB; 
+    --paper-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
     
-    --font-serif: 'Cormorant Garamond', serif;
-    --font-mono: 'Space Mono', monospace;
+    /* The Ink: Not black, but dried charcoal */
+    --ink-color: #1a1a1a; 
+    --ink-wash: rgba(20, 20, 20, 0.7);
+    
+    /* The Bamboo: Deep organic green/brown for accents */
+    --bamboo-shadow: #3C3830; 
+    
+    /* Typography */
+    --font-serif: 'Cormorant Garamond', serif; /* The Calligraphy */
+    --font-mono: 'Space Mono', monospace; /* The Metadata */
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* ---------------------------------------------------------
+   THE TEXTURE (The Materiality)
+   --------------------------------------------------------- */
 body {
     background-color: var(--bg-color);
-    color: var(--text-color);
+    /* This adds the "Paper Grain" noise over the color */
+    background-image: var(--paper-grain); 
+    color: var(--ink-color);
     font-family: var(--font-serif);
     line-height: 1.6;
-    font-size: 18px;
+    font-size: 21px; /* Large, easy to read (Wu Wei is effortless) */
+    overflow-x: hidden;
 }
 
-/* Typography Utilities */
-h1, h2, h3 {
+/* ---------------------------------------------------------
+   THE INK (Typography)
+   --------------------------------------------------------- */
+h1, h2, h3, p, li {
+    /* Subtle bleed effect - looks like ink on absorbent paper */
+    text-shadow: 0 0 1px rgba(0,0,0,0.05); 
+}
+
+h1 {
     font-weight: 300;
-    letter-spacing: -0.02em;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--ink-color);
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 3rem;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(60, 56, 48, 0.1); /* Faint brush stroke line */
+    padding-bottom: 1rem;
+    display: inline-block;
 }
 
 .meta-data, .marker, .role {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--tech-color);
+    letter-spacing: 0.2em; /* Wide spacing like stamped letters */
+    color: var(--bamboo-shadow);
+    opacity: 0.7;
 }
 
-/* Hero Section */
+/* ---------------------------------------------------------
+   THE LAYOUT (The Emptiness)
+   --------------------------------------------------------- */
 .hero {
-    height: 90vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2rem 10%;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 0 10vw;
+    position: relative;
 }
 
-.hero h1 {
-    font-size: 5rem;
-    margin: 1rem 0;
-    line-height: 1;
+/* Vertical Writing Reference (Subtle nod to Bamboo Slips) */
+.hero::before {
+    content: "";
+    position: absolute;
+    left: 4vw;
+    top: 10vh;
+    bottom: 10vh;
+    width: 1px;
+    background: rgba(0,0,0,0.05); /* A faint guide line */
 }
 
-.hero .subtitle {
-    font-size: 1.5rem;
-    font-style: italic;
-    color: var(--accent-color);
-    max-width: 600px;
-}
-
-/* Layout */
 .content-block {
     display: flex;
     flex-wrap: wrap;
-    padding: 6rem 10%;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.inverted {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-}
-
-.inverted .text-body h2, .inverted p {
-    color: var(--bg-color);
-}
-
-.inverted .marker {
-    color: #888;
+    padding: 10rem 10vw; /* Massive padding for "Emptiness" */
 }
 
 .sidebar {
-    flex: 1;
-    min-width: 200px;
-    padding-top: 10px;
+    flex: 0 0 200px;
+    padding-top: 15px;
+    opacity: 0.6;
 }
 
 .text-body {
-    flex: 3;
+    flex: 1;
     max-width: 800px;
 }
 
-.text-body h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-}
-
-.text-body p {
-    margin-bottom: 1.5rem;
-    font-size: 1.25rem;
-}
-
 blockquote {
-    border-left: 2px solid var(--accent-color);
-    padding-left: 2rem;
-    margin: 3rem 0;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-style: italic;
-    color: var(--accent-color);
+    line-height: 1.4;
+    margin: 4rem 0;
+    padding-left: 0;
+    border-left: none; /* Removed the hard border */
+    position: relative;
+    color: var(--bamboo-shadow);
 }
 
-/* Phase List */
-.phase-list {
-    list-style: none;
+/* Add a "Stamp" effect to quotes instead of a border */
+blockquote::before {
+    content: "“";
+    font-size: 6rem;
+    position: absolute;
+    left: -4rem;
+    top: -2rem;
+    opacity: 0.1;
+    font-family: serif;
 }
 
-.phase-list li {
-    margin-bottom: 2rem;
-    padding-left: 1rem;
-    border-left: 1px solid var(--accent-color);
+/* ---------------------------------------------------------
+   THE INVERTED SECTION (Deep Time)
+   --------------------------------------------------------- */
+.inverted {
+    background-color: #181818; /* Deep Charcoal (Dried Ink Block) */
+    color: #CCC;
+    position: relative;
+    /* We add texture here too, but blended differently */
 }
 
-.phase-list strong {
-    font-family: var(--font-mono);
-    display: block;
-    margin-bottom: 0.5rem;
+.inverted h2, .inverted p {
+    color: #E0E0E0;
+    text-shadow: none;
 }
 
-/* Team Grid */
-.team-section {
-    padding: 6rem 10%;
+/* ---------------------------------------------------------
+   ANIMATIONS (Stillness in Motion)
+   --------------------------------------------------------- */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.8s ease-out, transform 1.8s ease-out; /* Slower. Much slower. */
 }
 
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    margin-top: 3rem;
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.team-member h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.2rem;
-}
-
-.team-member .role {
-    display: block;
-    margin-bottom: 1rem;
-    font-size: 0.7rem;
-    color: var(--accent-color);
-}
-
-/* Footer */
+/* ---------------------------------------------------------
+   FOOTER
+   --------------------------------------------------------- */
 footer {
-    padding: 4rem 10%;
-    background-color: var(--text-color);
-    color: var(--bg-color);
+    padding: 6rem 10vw;
+    background-color: #181818;
+    color: #666;
+    font-size: 0.8rem;
     text-align: center;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
 }
 
-.contact-link {
-    color: var(--bg-color);
-    margin-top: 1rem;
-    display: inline-block;
-    border-bottom: 1px solid var(--bg-color);
-    text-decoration: none;
-}
-
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 3rem; }
-    .content-block { flex-direction: column; padding: 4rem 5%; }
-    .sidebar { margin-bottom: 2rem; }
+    .hero h1 { font-size: 3.5rem; }
+    .content-block { padding: 5rem 6%; }
+    blockquote { font-size: 1.5rem; }
+    blockquote::before { left: -1rem; font-size: 4rem; }
+}
+/* ---------------------------------------------------------
+   THE CONSTELLATION (The Team)
+   --------------------------------------------------------- */
+.constellation-section {
+    padding: 10rem 5vw;
+    background: radial-gradient(circle at top right, #1a1a1a, #000);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.star-chart {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 600px; /* Space for the stars to spread */
+}
+
+/* The Stars */
+.star {
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+    position: relative;
+    z-index: 2;
+}
+
+/* Elizabeth's Star (Merak) - The Brightest & Twinkling */
+.star.merak {
+    width: 10px;
+    height: 10px;
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.8);
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+.star.polaris {
+    width: 12px;
+    height: 12px;
+    background-color: #A83F39; /* Cinnabar Red for the North Star */
+    box-shadow: 0 0 25px 5px rgba(168, 63, 57, 0.6);
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.9); }
+}
+
+/* Positioning the Stars (Approximate Dipper Shape) */
+.dipper-grid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.star-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.star-wrapper:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* Coordinates (Adjusted for Desktop) */
+/* Bowl */
+.star-1 { top: 10%; right: 15%; flex-direction: row-reverse; text-align: right; } /* Dubhe */
+.star-2 { top: 35%; right: 15%; flex-direction: row-reverse; text-align: right; } /* Merak (Elizabeth) */
+.star-3 { top: 35%; right: 35%; flex-direction: column; align-items: center; text-align: center; } /* Phecda */
+.star-4 { top: 10%; right: 38%; flex-direction: column-reverse; align-items: center; text-align: center; } /* Megrez */
+
+/* Handle */
+.star-5 { top: 15%; right: 55%; flex-direction: column; text-align: center;} /* Alioth */
+.star-6 { top: 20%; right: 70%; flex-direction: column; text-align: center;} /* Mizar */
+.star-7 { top: 40%; right: 85%; flex-direction: column; text-align: center;} /* Alkaid */
+
+/* North Star */
+.polaris-container {
+    position: absolute;
+    top: -50px;
+    right: 5%;
+    text-align: center;
+}
+
+.star-label {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.6);
+}
+
+.ancient-name {
+    font-family: 'Noto Serif TC', serif;
+    color: #A83F39;
+    font-size: 1.2rem;
+}
+
+/* The Text Info */
+.member-info h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #fff;
+    text-shadow: none;
+}
+
+.member-info .role {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem;
+}
+
+.star-name {
+    font-family: var(--font-mono);
+    color: #A83F39;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* The Lines connecting the stars */
+.constellation-lines {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.constellation-lines line {
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 1;
+}
+
+.pointer-line {
+    stroke-dasharray: 5, 5; /* Dashed line to North Star */
+    stroke: rgba(168, 63, 57, 0.3); /* Reddish tint */
+}
+
+/* Mobile Fallback: Stack them normally if screen is small */
+@media (max-width: 900px) {
+    .constellation-section { height: auto; padding: 4rem 5%; }
+    .star-chart { height: auto; }
+    .dipper-grid, .constellation-lines, .polaris-container { display: none; }
+    
+    .star-wrapper {
+        position: relative;
+        top: auto; right: auto; left: auto;
+        flex-direction: row !important;
+        text-align: left !important;
+        margin-bottom: 2rem;
+        display: flex;
+    }
+    
+    .star-chart {
+        display: flex;
+        flex-direction: column;
+    }
 }
