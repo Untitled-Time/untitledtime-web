@@ -1,18 +1,21 @@
 :root {
     --bg-color: #F3F1EB; 
-    --paper-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    /* UPDATED: Coarser, more fibrous Xuan paper texture. 
+       Lower baseFrequency = larger grain. Higher numOctaves = more detail. */
+    --paper-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
     --ink-color: #1a1a1a; 
     --bamboo-shadow: #3C3830; 
     --font-serif: 'Cormorant Garamond', serif; 
     --font-mono: 'Space Mono', monospace;
 }
 
-/* BASE STYLES */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg-color);
-    background-image: var(--paper-grain); 
+    /* UPDATED: Added a radial gradient behind the grain to simulate paper unevenness/depth */
+    background-image: var(--paper-grain), radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(243, 241, 235, 0) 90%);
+    background-blend-mode: multiply; /* Blends the grain into the color */
     color: var(--ink-color);
     font-family: var(--font-serif);
     line-height: 1.6;
@@ -47,7 +50,6 @@ h2 {
     opacity: 0.7;
 }
 
-/* LAYOUT */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -93,19 +95,20 @@ blockquote::before {
     content: "“"; font-size: 6rem; position: absolute; left: -4rem; top: -2rem; opacity: 0.1;
 }
 
-.inverted { background-color: #181818; color: #CCC; }
+/* Inverted Sections (Dark Mode for Metal and Earth) */
+.inverted { background-color: #1a1a1a; color: #CCC; }
 .inverted h2, .inverted p { color: #E0E0E0; text-shadow: none; }
+.inverted .marker { color: #888; }
+.inverted .seal-mark { color: #d64f44; }
 
-/* ANIMATIONS */
+/* Animations */
 .fade-in-up {
     opacity: 0; transform: translateY(30px);
     transition: opacity 1.8s ease-out, transform 1.8s ease-out;
 }
 .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
-/* =========================================
-   CONSTELLATION SECTION
-   ========================================= */
+/* Constellation Section */
 .constellation-section {
     position: relative;
     padding: 6rem 5vw 10rem 5vw;
@@ -121,7 +124,6 @@ blockquote::before {
     margin-bottom: 4rem; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto;
 }
 
-/* PART A: THE SKY PANEL (Visual Only) */
 .sky-panel {
     position: relative;
     width: 100%;
@@ -129,115 +131,71 @@ blockquote::before {
     text-align: center;
 }
 
-.constellation-svg {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    overflow: visible;
-}
+.constellation-svg { width: 100%; max-width: 600px; height: auto; overflow: visible; }
+.star-lines { stroke: rgba(255, 255, 255, 0.15); stroke-width: 1; fill: none; }
+.pointer-line { stroke: rgba(168, 63, 57, 0.4); stroke-dasharray: 5, 5; stroke-width: 1; }
 
-.star-lines {
-    stroke: rgba(255, 255, 255, 0.15);
-    stroke-width: 1;
-    fill: none;
-}
-
-.pointer-line {
-    stroke: rgba(168, 63, 57, 0.4);
-    stroke-dasharray: 5, 5;
-    stroke-width: 1;
-}
-
-/* Star Styles */
 .star { 
-    /* The Twinkle is now optical, not physical */
-    animation: twinkle 4s infinite ease-in-out alternate; 
+    /* Keep the base animation */
+    animation: twinkle 5s infinite ease-in-out alternate; 
     transform-origin: center;
 }
-.star.bright { filter: drop-shadow(0 0 4px rgba(255,255,255,0.8)); }
 
-/* Real Spectral Colors */
+/* UPDATED: Randomize the stars so they don't blink in sync.
+   We use 'nth-of-type' targeting the circles in the SVG. 
+   Negative delays start the animation 'in progress'. */
+
+/* Star 1 */
+.constellation-svg circle:nth-of-type(1) { animation-delay: -0.5s; animation-duration: 4.5s; }
+/* Star 2 */
+.constellation-svg circle:nth-of-type(2) { animation-delay: -2.1s; animation-duration: 5.2s; }
+/* Star 3 */
+.constellation-svg circle:nth-of-type(3) { animation-delay: -1.4s; animation-duration: 4.8s; }
+/* Star 4 */
+.constellation-svg circle:nth-of-type(4) { animation-delay: -3.8s; animation-duration: 5.5s; }
+/* Star 5 */
+.constellation-svg circle:nth-of-type(5) { animation-delay: -0.2s; animation-duration: 4.2s; }
+/* Star 6 */
+.constellation-svg circle:nth-of-type(6) { animation-delay: -2.9s; animation-duration: 5.0s; }
+/* Star 7 */
+.constellation-svg circle:nth-of-type(7) { animation-delay: -1.1s; animation-duration: 4.6s; }
+/* Star 8 (Polaris) - Slower Pulse */
+.constellation-svg circle:nth-of-type(8) { animation-delay: 0s; animation-duration: 6s; }
+
+
 .star.blue-white { fill: #dbe9ff; }
 .star.white { fill: #ffffff; }
-.star.amber { fill: #ffddaa; filter: drop-shadow(0 0 5px rgba(255, 221, 170, 0.4)); }
-.star.polaris-star { 
-    fill: #fffcd1; 
-    /* Polaris pulse is now just brightness/glow, not scale */
-    animation: pulse 5s infinite ease-in-out;
-}
+.star.amber { fill: #ffddaa; }
+.star.polaris-star { fill: #fffcd1; animation: pulse 6s infinite ease-in-out; }
 
-/* Text label under Polaris */
 .polaris-label {
-    position: absolute;
-    top: 50px; left: 50%; 
-    transform: translateX(180px); 
-    text-align: left;
+    position: absolute; top: 50px; left: 50%; transform: translateX(180px); text-align: left;
 }
-.ancient-label {
-    display: block; font-family: 'Noto Serif TC', serif; color: #A83F39; font-size: 1.2rem;
-}
-.eng-label {
-    font-family: var(--font-mono); font-size: 0.7rem; color: #fff; letter-spacing: 0.2em;
-}
+.ancient-label { display: block; font-family: 'Noto Serif TC', serif; color: #A83F39; font-size: 1.2rem; }
+.eng-label { font-family: var(--font-mono); font-size: 0.7rem; color: #fff; letter-spacing: 0.2em; }
 
-/* PART B: THE TEAM MANIFEST (List) */
 .team-manifest {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 4rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 4rem;
 }
 
-.team-card {
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.card-header {
-    display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem;
-}
-
-.star-dot {
-    width: 6px; height: 6px; border-radius: 50%; display: inline-block;
-}
-.star-dot.amber-dot { background-color: #ffddaa; box-shadow: 0 0 4px #ffddaa; }
-.star-dot.blue-dot { background-color: #dbe9ff; box-shadow: 0 0 4px #dbe9ff; }
+.team-card { padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
+.star-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.star-dot.amber-dot { background-color: #ffddaa; }
+.star-dot.blue-dot { background-color: #dbe9ff; }
 .star-dot.white-dot { background-color: #fff; }
-.star-dot.polaris-dot { background-color: #A83F39; box-shadow: 0 0 6px #A83F39; }
+.star-dot.polaris-dot { background-color: #A83F39; }
 
-.star-proper-name {
-    font-family: var(--font-mono); 
-    color: rgba(255,255,255,0.9);
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-}
+.star-proper-name { font-family: var(--font-mono); color: rgba(255,255,255,0.9); font-size: 0.8rem; letter-spacing: 0.1em; }
+.chn-name { font-family: 'Noto Serif TC', serif; color: #A83F39; font-size: 1rem; margin-left: 5px; }
+.team-card h3 { font-size: 1.6rem; color: #fff; margin-bottom: 0.4rem; font-weight: 400; }
+.team-card .role { font-family: var(--font-mono); color: rgba(255,255,255,0.5); font-size: 0.7rem; margin-bottom: 1rem; text-transform: uppercase; }
+.team-card .blurb { font-size: 1rem; color: #aaa; line-height: 1.5; font-style: italic; }
 
-.chn-name {
-    font-family: 'Noto Serif TC', serif; 
-    color: #A83F39; 
-    font-size: 1rem;
-    margin-left: 5px;
-}
-
-.team-card h3 {
-    font-size: 1.6rem; color: #fff; margin-bottom: 0.4rem; text-shadow: none;
-    font-weight: 400;
-}
-
-.team-card .role {
-    font-family: var(--font-mono); color: rgba(255,255,255,0.5); font-size: 0.7rem; margin-bottom: 1rem;
-    text-transform: uppercase; letter-spacing: 0.05em;
-}
-
-.team-card .blurb {
-    font-size: 1rem; color: #aaa; line-height: 1.5; font-style: italic;
-}
-
-/* NEW ANIMATIONS: OPTICAL, NOT PHYSICAL */
 @keyframes twinkle {
-    0%, 100% { opacity: 0.8; filter: brightness(1); }
-    50% { opacity: 0.4; filter: brightness(0.7); }
+    0%, 100% { opacity: 0.9; filter: brightness(1); }
+    50% { opacity: 0.3; filter: brightness(0.7); }
 }
 
 @keyframes pulse {
@@ -246,7 +204,9 @@ blockquote::before {
     100% { filter: drop-shadow(0 0 5px rgba(255, 240, 150, 0.4)); opacity: 0.9; }
 }
 
-/* RESPONSIVE */
+footer { padding: 6rem 10vw; background-color: #1a1a1a; color: #666; font-size: 0.8rem; text-align: center; }
+.contact-link { color: #fff; text-decoration: none; border-bottom: 1px solid #444; }
+
 @media (max-width: 900px) {
     .constellation-section { padding: 4rem 5%; }
     .polaris-label { left: 70%; top: 10%; transform: none; }
