@@ -1,34 +1,26 @@
 :root {
     --bg-color: #F0EFE9; 
     
-    /* LAYER 1: The Fibers (Long, thin strands) */
+    /* BACKGROUND TEXTURE */
     --paper-fibers: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fibers'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fibers)' opacity='0.25'/%3E%3C/svg%3E");
-    
-    /* LAYER 2: The Clouds (Uneven pulp density) */
     --paper-clouds: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='clouds'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.01' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23clouds)' opacity='0.08'/%3E%3C/svg%3E");
 
     --ink-color: #1a1a1a; 
     --bamboo-shadow: #3C3830; 
     --font-serif: 'Cormorant Garamond', serif; 
     --font-mono: 'Space Mono', monospace;
-    
-    /* Web Font that mimics brush work (closest to ancient feel available online) */
-    --font-chinese: 'Ma Shan Zheng', cursive; 
+    --font-chinese: 'Noto Serif TC', serif; 
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg-color);
-    
-    /* COMPLEX LAYERING for Realism */
     background-image: 
         var(--paper-fibers), 
         var(--paper-clouds),
         radial-gradient(circle at center, rgba(255,255,255,0.6) 0%, rgba(220, 215, 205, 0.4) 100%);
-        
     background-blend-mode: multiply, overlay, normal;
-    
     color: var(--ink-color);
     font-family: var(--font-serif);
     line-height: 1.6;
@@ -36,11 +28,7 @@ body {
     overflow-x: hidden;
 }
 
-/* TYPOGRAPHY INK BLEED */
-h1, h2, h3, p, li { 
-    /* This creates the "Ink Spread" effect */
-    text-shadow: 0 0 1px rgba(26, 26, 26, 0.1), 0 0 2px rgba(26, 26, 26, 0.05);
-}
+h1, h2, h3, p, li { text-shadow: none; }
 
 h1 {
     font-weight: 300;
@@ -67,16 +55,11 @@ h2 {
     opacity: 0.7;
 }
 
-/* SEAL SCRIPT SIMULATION */
 .seal-style {
-    font-family: var(--font-chinese); /* Use the brush font */
-    color: #A83F39; /* Cinnabar Red */
-    font-weight: 400;
+    font-family: var(--font-chinese); 
+    color: #A83F39; 
+    font-weight: 900; 
     display: inline-block;
-    
-    /* THE TRICK: Simulating Stone Carving imperfections */
-    filter: contrast(150%) blur(0.4px); 
-    transform: scale(1.1); /* Seals are often slightly larger */
     margin-right: 0.5rem;
 }
 
@@ -93,25 +76,17 @@ h2 {
 .hero::before {
     content: "";
     position: absolute;
-    left: 4vw;
-    top: 10vh;
-    bottom: 10vh;
-    width: 1px;
+    left: 4vw; top: 10vh; bottom: 10vh; width: 1px;
     background: rgba(0,0,0,0.05);
 }
 
 .content-block {
     display: flex;
     flex-wrap: wrap;
-    padding: 10rem 10vw;
+    padding: 10rem 10vw; 
 }
 
-.sidebar {
-    flex: 0 0 200px;
-    padding-top: 15px;
-    opacity: 0.6;
-}
-
+.sidebar { flex: 0 0 200px; padding-top: 15px; opacity: 0.6; }
 .text-body { flex: 1; max-width: 800px; }
 
 blockquote {
@@ -126,11 +101,26 @@ blockquote::before {
     content: "“"; font-size: 6rem; position: absolute; left: -4rem; top: -2rem; opacity: 0.1;
 }
 
-/* Inverted Sections */
-.inverted { background-color: #1a1a1a; color: #CCC; }
-.inverted h2, .inverted p { color: #E0E0E0; text-shadow: none; }
-.inverted .marker { color: #888; }
-.inverted .seal-style { color: #d64f44; filter: none; } /* Clear filter on dark mode for readability */
+/* ---------------------------------------------------------
+   HIGH CONTRAST INVERTED SECTIONS
+   --------------------------------------------------------- */
+.inverted { 
+    background-color: #1a1a1a; 
+    color: #F0EFE9; /* High contrast off-white */
+}
+.inverted h2, .inverted p, .inverted blockquote { 
+    color: #F0EFE9; /* Brighter text for readability */
+}
+.inverted .marker { 
+    color: #AAA; /* Brighter grey for sidebar */
+    opacity: 1; 
+}
+.inverted .seal-style { 
+    color: #ff5e52; /* Slightly brighter red for dark background */
+} 
+.inverted blockquote {
+    color: #CCC;
+}
 
 /* Animations */
 .fade-in-up {
@@ -151,7 +141,7 @@ blockquote::before {
 .star-container-full { max-width: 1000px; margin: 0 auto; }
 
 .intro-quote {
-    font-size: 1.4rem; font-style: italic; color: rgba(255,255,255,0.7);
+    font-size: 1.4rem; font-style: italic; color: #F0EFE9;
     margin-bottom: 4rem; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto;
 }
 
@@ -163,8 +153,8 @@ blockquote::before {
 }
 
 .constellation-svg { width: 100%; max-width: 600px; height: auto; overflow: visible; }
-.star-lines { stroke: rgba(255, 255, 255, 0.15); stroke-width: 1; fill: none; }
-.pointer-line { stroke: rgba(168, 63, 57, 0.4); stroke-dasharray: 5, 5; stroke-width: 1; }
+.star-lines { stroke: rgba(255, 255, 255, 0.2); stroke-width: 1; fill: none; }
+.pointer-line { stroke: rgba(255, 94, 82, 0.5); stroke-dasharray: 5, 5; stroke-width: 1; }
 
 .star { animation: twinkle 5s infinite ease-in-out alternate; transform-origin: center; }
 
@@ -186,27 +176,66 @@ blockquote::before {
 .polaris-label {
     position: absolute; top: 50px; left: 50%; transform: translateX(180px); text-align: left;
 }
-.ancient-label { display: block; font-family: var(--font-chinese); color: #A83F39; font-size: 1.4rem; }
+.ancient-label { display: block; font-family: var(--font-chinese); color: #ff5e52; font-size: 1.4rem; }
 .eng-label { font-family: var(--font-mono); font-size: 0.7rem; color: #fff; letter-spacing: 0.2em; }
 
 .team-manifest {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;
-    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 4rem;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.2); /* Brightened border */
+    padding-top: 4rem;
 }
 
-.team-card { padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.team-card { 
+    padding-bottom: 2rem; 
+    border-bottom: 1px solid rgba(255,255,255,0.15); /* Brightened border */
+}
+
 .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
+
 .star-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
 .star-dot.amber-dot { background-color: #ffddaa; }
 .star-dot.blue-dot { background-color: #dbe9ff; }
 .star-dot.white-dot { background-color: #fff; }
-.star-dot.polaris-dot { background-color: #A83F39; }
+.star-dot.polaris-dot { background-color: #ff5e52; }
 
-.star-proper-name { font-family: var(--font-mono); color: rgba(255,255,255,0.9); font-size: 0.8rem; letter-spacing: 0.1em; }
-.chn-name { font-family: var(--font-chinese); color: #A83F39; font-size: 1.2rem; margin-left: 5px; }
-.team-card h3 { font-size: 1.6rem; color: #fff; margin-bottom: 0.4rem; font-weight: 400; }
-.team-card .role { font-family: var(--font-mono); color: rgba(255,255,255,0.5); font-size: 0.7rem; margin-bottom: 1rem; text-transform: uppercase; }
-.team-card .blurb { font-size: 1rem; color: #aaa; line-height: 1.5; font-style: italic; }
+.star-proper-name { 
+    font-family: var(--font-mono); 
+    color: #FFFFFF; /* Pure white for name labels */
+    font-size: 0.8rem; 
+    letter-spacing: 0.1em; 
+}
+
+.chn-name { 
+    font-family: var(--font-chinese); 
+    color: #ff5e52; /* Bright Red */
+    font-size: 1.2rem; 
+    margin-left: 5px; 
+}
+
+.team-card h3 { 
+    font-size: 1.8rem; 
+    color: #FFFFFF; /* High contrast white */
+    margin-bottom: 0.4rem; 
+    font-weight: 400; 
+}
+
+.team-card .role { 
+    font-family: var(--font-mono); 
+    color: #ffddaa; /* Changed to Amber for high visibility */
+    font-size: 0.75rem; 
+    margin-bottom: 1rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.1em;
+}
+
+.team-card .blurb { 
+    font-size: 1.05rem; 
+    color: #E0E0E0; /* Bright Silver (readable on dark background) */
+    line-height: 1.6; 
+    font-style: italic; 
+}
 
 @keyframes twinkle {
     0%, 100% { opacity: 0.9; filter: brightness(1); }
@@ -219,11 +248,20 @@ blockquote::before {
     100% { filter: drop-shadow(0 0 5px rgba(255, 240, 150, 0.4)); opacity: 0.9; }
 }
 
-footer { padding: 6rem 10vw; background-color: #1a1a1a; color: #666; font-size: 0.8rem; text-align: center; }
+footer { padding: 6rem 10vw; background-color: #1a1a1a; color: #AAA; font-size: 0.8rem; text-align: center; }
 .contact-link { color: #fff; text-decoration: none; border-bottom: 1px solid #444; }
 
+/* MOBILE OPTIMIZATION */
 @media (max-width: 900px) {
-    .constellation-section { padding: 4rem 5%; }
-    .polaris-label { left: 70%; top: 10%; transform: none; }
+    .content-block, .constellation-section { padding: 5rem 6%; }
+    .sidebar { flex: auto; width: 100%; margin-bottom: 1.5rem; }
+    .marker { display: block; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+    .text-body { max-width: 100%; }
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.2rem; }
+    .polaris-label { left: 50%; top: 10%; transform: translateX(-50%); text-align: center; }
     .team-manifest { grid-template-columns: 1fr; gap: 2rem; }
+    blockquote { font-size: 1.5rem; margin: 3rem 0; }
+    blockquote::before { left: -1rem; top: -1rem; font-size: 4rem; }
+    .watermark-char { font-size: 50vw; top: 10vh; right: -10vw; opacity: 0.03; }
 }
