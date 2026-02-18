@@ -11,31 +11,24 @@
     --bamboo-shadow: #3C3830; 
     
     /* Typography */
-    --font-serif: 'Cormorant Garamond', serif; /* The Calligraphy */
-    --font-mono: 'Space Mono', monospace; /* The Metadata */
+    --font-serif: 'Cormorant Garamond', serif; 
+    --font-mono: 'Space Mono', monospace;
 }
 
-/* ---------------------------------------------------------
-   THE TEXTURE (The Materiality)
-   --------------------------------------------------------- */
+/* BASE STYLES */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
     background-color: var(--bg-color);
-    /* This adds the "Paper Grain" noise over the color */
     background-image: var(--paper-grain); 
     color: var(--ink-color);
     font-family: var(--font-serif);
     line-height: 1.6;
-    font-size: 21px; /* Large, easy to read (Wu Wei is effortless) */
+    font-size: 21px; 
     overflow-x: hidden;
 }
 
-/* ---------------------------------------------------------
-   THE INK (Typography)
-   --------------------------------------------------------- */
-h1, h2, h3, p, li {
-    /* Subtle bleed effect - looks like ink on absorbent paper */
-    text-shadow: 0 0 1px rgba(0,0,0,0.05); 
-}
+h1, h2, h3, p, li { text-shadow: 0 0 1px rgba(0,0,0,0.05); }
 
 h1 {
     font-weight: 300;
@@ -49,23 +42,21 @@ h1 {
 h2 {
     font-size: 3rem;
     font-weight: 300;
-    border-bottom: 1px solid rgba(60, 56, 48, 0.1); /* Faint brush stroke line */
+    border-bottom: 1px solid rgba(60, 56, 48, 0.1);
     padding-bottom: 1rem;
     display: inline-block;
 }
 
-.meta-data, .marker, .role {
+.meta-data, .marker, .role, .star-code, .star-role {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em; /* Wide spacing like stamped letters */
+    letter-spacing: 0.2em;
     color: var(--bamboo-shadow);
     opacity: 0.7;
 }
 
-/* ---------------------------------------------------------
-   THE LAYOUT (The Emptiness)
-   --------------------------------------------------------- */
+/* LAYOUT */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -75,7 +66,6 @@ h2 {
     position: relative;
 }
 
-/* Vertical Writing Reference (Subtle nod to Bamboo Slips) */
 .hero::before {
     content: "";
     position: absolute;
@@ -83,13 +73,13 @@ h2 {
     top: 10vh;
     bottom: 10vh;
     width: 1px;
-    background: rgba(0,0,0,0.05); /* A faint guide line */
+    background: rgba(0,0,0,0.05);
 }
 
 .content-block {
     display: flex;
     flex-wrap: wrap;
-    padding: 10rem 10vw; /* Massive padding for "Emptiness" */
+    padding: 10rem 10vw;
 }
 
 .sidebar {
@@ -109,12 +99,10 @@ blockquote {
     line-height: 1.4;
     margin: 4rem 0;
     padding-left: 0;
-    border-left: none; /* Removed the hard border */
     position: relative;
     color: var(--bamboo-shadow);
 }
 
-/* Add a "Stamp" effect to quotes instead of a border */
 blockquote::before {
     content: "“";
     font-size: 6rem;
@@ -125,38 +113,182 @@ blockquote::before {
     font-family: serif;
 }
 
-/* ---------------------------------------------------------
-   THE INVERTED SECTION (Deep Time)
-   --------------------------------------------------------- */
 .inverted {
-    background-color: #181818; /* Deep Charcoal (Dried Ink Block) */
+    background-color: #181818; 
     color: #CCC;
-    position: relative;
-    /* We add texture here too, but blended differently */
 }
+.inverted h2, .inverted p { color: #E0E0E0; text-shadow: none; }
 
-.inverted h2, .inverted p {
-    color: #E0E0E0;
-    text-shadow: none;
-}
-
-/* ---------------------------------------------------------
-   ANIMATIONS (Stillness in Motion)
-   --------------------------------------------------------- */
+/* ANIMATIONS */
 .fade-in-up {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 1.8s ease-out, transform 1.8s ease-out; /* Slower. Much slower. */
+    transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+}
+.fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+/* =========================================
+   CONSTELLATION SECTION (The Fix)
+   ========================================= */
+.constellation-section {
+    position: relative;
+    padding: 8rem 5vw 12rem 5vw;
+    background: radial-gradient(circle at 70% 20%, #1a1a1a, #000); /* Center glow near Polaris */
+    color: #fff;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
-.fade-in-up.visible {
+.star-container-full {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.intro-quote {
+    font-size: 1.6rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 6rem;
+    margin-left: 200px; /* Aligns with text body of other sections */
+    max-width: 800px;
+    border-left: 1px solid rgba(168, 63, 57, 0.5);
+    padding-left: 2rem;
+}
+
+/* THE STAR CHART CONTAINER */
+.star-chart {
+    position: relative;
+    width: 100%;
+    /* Maintain aspect ratio: Height is 60% of width */
+    padding-bottom: 60%; 
+}
+
+/* SVG LINES LAYER */
+.constellation-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.constellation-lines line {
+    stroke: rgba(255, 255, 255, 0.15);
+    stroke-width: 1px;
+}
+
+.pointer-line {
+    stroke-dasharray: 8, 4;
+    stroke: rgba(168, 63, 57, 0.5); /* Cinnabar Red Pointer */
+}
+
+/* STARS & NODES */
+.star-node {
+    position: absolute;
+    transform: translate(-50%, -50%); /* Centers the node exactly on the coordinate */
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Elizabeth (Merak) - The Brightest */
+.star.bright-pulse {
+    width: 14px;
+    height: 14px;
+    box-shadow: 0 0 25px 8px rgba(255, 255, 255, 0.6);
+    animation: pulseGlow 4s infinite alternate;
+}
+
+/* Polaris - The North Star */
+.star.polaris {
+    width: 12px;
+    height: 12px;
+    background-color: #A83F39;
+    box-shadow: 0 0 30px 10px rgba(168, 63, 57, 0.4);
+    animation: twinkle 5s infinite ease-in-out;
+}
+
+/* ANIMATIONS */
+@keyframes pulseGlow {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.9); }
+}
+
+/* LABELS (Text next to stars) */
+.label-box {
+    position: absolute;
+    width: 200px;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
+
+/* Show labels on hover OR always show names for key stars */
+.star-node:hover .label-box, .polaris-node .label-box {
     opacity: 1;
     transform: translateY(0);
 }
+/* Optional: Always show specific labels lightly */
+.label-box { opacity: 0.7; } 
+.star-node:hover .label-box { opacity: 1; z-index: 10; }
 
-/* ---------------------------------------------------------
-   FOOTER
-   --------------------------------------------------------- */
+/* Label Positioning relative to the dot */
+.right-label { left: 25px; text-align: left; }
+.bottom-label { top: 20px; text-align: center; }
+.top-label { bottom: 25px; text-align: center; }
+
+.label-box h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+.star-code {
+    display: block;
+    color: #A83F39;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 3px;
+}
+.star-role {
+    color: #aaa;
+    font-size: 0.7rem;
+}
+.ancient-name {
+    font-family: 'Noto Serif TC', serif;
+    color: #A83F39;
+    font-size: 1.4rem;
+    display: block;
+}
+.star-title {
+    font-family: var(--font-mono);
+    letter-spacing: 0.2em;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 5px;
+}
+
+/* FOOTER */
 footer {
     padding: 6rem 10vw;
     background-color: #181818;
@@ -164,177 +296,40 @@ footer {
     font-size: 0.8rem;
     text-align: center;
 }
+.contact-link { color: #fff; text-decoration: none; border-bottom: 1px solid #444; }
 
-@media (max-width: 768px) {
-    .hero h1 { font-size: 3.5rem; }
-    .content-block { padding: 5rem 6%; }
-    blockquote { font-size: 1.5rem; }
-    blockquote::before { left: -1rem; font-size: 4rem; }
-}
-/* ---------------------------------------------------------
-   THE CONSTELLATION (The Team)
-   --------------------------------------------------------- */
-.constellation-section {
-    padding: 10rem 5vw;
-    background: radial-gradient(circle at top right, #1a1a1a, #000);
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh;
-}
-
-.star-chart {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    height: 600px; /* Space for the stars to spread */
-}
-
-/* The Stars */
-.star {
-    width: 6px;
-    height: 6px;
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
-    position: relative;
-    z-index: 2;
-}
-
-/* Elizabeth's Star (Merak) - The Brightest & Twinkling */
-.star.merak {
-    width: 10px;
-    height: 10px;
-    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.8);
-    animation: twinkle 3s infinite ease-in-out;
-}
-
-.star.polaris {
-    width: 12px;
-    height: 12px;
-    background-color: #A83F39; /* Cinnabar Red for the North Star */
-    box-shadow: 0 0 25px 5px rgba(168, 63, 57, 0.6);
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(0.9); }
-}
-
-/* Positioning the Stars (Approximate Dipper Shape) */
-.dipper-grid {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.star-wrapper {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.star-wrapper:hover {
-    transform: scale(1.05);
-    z-index: 10;
-}
-
-/* Coordinates (Adjusted for Desktop) */
-/* Bowl */
-.star-1 { top: 10%; right: 15%; flex-direction: row-reverse; text-align: right; } /* Dubhe */
-.star-2 { top: 35%; right: 15%; flex-direction: row-reverse; text-align: right; } /* Merak (Elizabeth) */
-.star-3 { top: 35%; right: 35%; flex-direction: column; align-items: center; text-align: center; } /* Phecda */
-.star-4 { top: 10%; right: 38%; flex-direction: column-reverse; align-items: center; text-align: center; } /* Megrez */
-
-/* Handle */
-.star-5 { top: 15%; right: 55%; flex-direction: column; text-align: center;} /* Alioth */
-.star-6 { top: 20%; right: 70%; flex-direction: column; text-align: center;} /* Mizar */
-.star-7 { top: 40%; right: 85%; flex-direction: column; text-align: center;} /* Alkaid */
-
-/* North Star */
-.polaris-container {
-    position: absolute;
-    top: -50px;
-    right: 5%;
-    text-align: center;
-}
-
-.star-label {
-    display: block;
-    margin-top: 10px;
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
-    color: rgba(255,255,255,0.6);
-}
-
-.ancient-name {
-    font-family: 'Noto Serif TC', serif;
-    color: #A83F39;
-    font-size: 1.2rem;
-}
-
-/* The Text Info */
-.member-info h3 {
-    font-size: 1.2rem;
-    margin: 0;
-    color: #fff;
-    text-shadow: none;
-}
-
-.member-info .role {
-    color: rgba(255,255,255,0.5);
-    font-size: 0.7rem;
-}
-
-.star-name {
-    font-family: var(--font-mono);
-    color: #A83F39;
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 2px;
-}
-
-/* The Lines connecting the stars */
-.constellation-lines {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.constellation-lines line {
-    stroke: rgba(255, 255, 255, 0.1);
-    stroke-width: 1;
-}
-
-.pointer-line {
-    stroke-dasharray: 5, 5; /* Dashed line to North Star */
-    stroke: rgba(168, 63, 57, 0.3); /* Reddish tint */
-}
-
-/* Mobile Fallback: Stack them normally if screen is small */
+/* MOBILE RESPONSIVENESS */
 @media (max-width: 900px) {
-    .constellation-section { height: auto; padding: 4rem 5%; }
-    .star-chart { height: auto; }
-    .dipper-grid, .constellation-lines, .polaris-container { display: none; }
+    .constellation-section { padding: 4rem 5%; height: auto; }
+    .intro-quote { margin-left: 0; font-size: 1.2rem; }
     
-    .star-wrapper {
-        position: relative;
-        top: auto; right: auto; left: auto;
-        flex-direction: row !important;
-        text-align: left !important;
+    /* Hide the visual map on mobile */
+    .constellation-lines, .star, .watermark-char { display: none; }
+    
+    /* Stack the content vertically */
+    .star-chart { padding-bottom: 0; height: auto; display: flex; flex-direction: column; gap: 2rem; }
+    
+    .star-node {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        display: block;
         margin-bottom: 2rem;
-        display: flex;
+        border-left: 2px solid #333;
+        padding-left: 1rem;
+    }
+
+    .label-box {
+        position: relative;
+        opacity: 1;
+        width: 100%;
+        text-align: left !important;
+        left: auto !important;
+        top: auto !important;
+        bottom: auto !important;
     }
     
-    .star-chart {
-        display: flex;
-        flex-direction: column;
-    }
+    .star-code { color: #666; }
+    .polaris-node { order: -1; margin-bottom: 4rem; border-left: 2px solid #A83F39; }
 }

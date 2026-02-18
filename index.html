@@ -26,16 +26,17 @@
             filter: url(#noiseFilter); 
         }
         
-        /* Specific adjustments for the large background character */
+        /* Background Watermark Character */
         .watermark-char {
             position: absolute;
-            top: 20%;
-            right: 10%;
-            font-size: 20vw;
-            color: rgba(60, 56, 48, 0.03); /* Barely visible ghost */
+            top: 15vh;
+            right: 5vw;
+            font-size: 25vw;
+            color: rgba(60, 56, 48, 0.04); 
             font-family: 'Noto Serif TC', serif;
             z-index: -1;
             pointer-events: none;
+            user-select: none;
         }
     </style>
 </head>
@@ -106,91 +107,106 @@
                 <span class="marker">04. THE NAVIGATORS</span>
             </div>
             
-            <div class="star-chart">
-                <div class="polaris-container">
-                    <div class="star polaris"></div>
-                    <span class="star-label">UNTITLED TIME <br><span class="ancient-name">北極星</span></span>
+            <div class="star-container-full">
+                <div class="constellation-intro fade-in-up">
+                    <p class="intro-quote">
+                        "Like the stars of the Big Dipper, we have drifted from different disciplines to form a temporary constellation, aligning to point toward the North Star."
+                    </p>
                 </div>
 
-                <div class="dipper-grid">
+                <div class="star-chart">
                     
-                    <div class="star-wrapper star-1">
+                    <svg class="constellation-lines" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+                        <line x1="700" y1="200" x2="700" y2="350" /> <line x1="700" y1="350" x2="550" y2="350" /> <line x1="550" y1="350" x2="520" y2="200" /> <line x1="520" y1="200" x2="700" y2="200" /> <line x1="520" y1="200" x2="400" y2="220" /> <line x1="400" y1="220" x2="250" y2="250" /> <line x1="250" y1="250" x2="100" y2="350" /> <line x1="700" y1="200" x2="700" y2="50" class="pointer-line" /> </svg>
+
+                    <div class="star-node polaris-node" style="left: 70%; top: 8.3%;">
+                        <div class="star polaris twinkling"></div>
+                        <div class="label-box top-label">
+                            <span class="ancient-name">北極星</span>
+                            <span class="star-title">UNTITLED TIME</span>
+                            <span class="star-role">The North Star</span>
+                        </div>
+                    </div>
+
+                    <div class="star-node" style="left: 70%; top: 33.3%;">
                         <div class="star dubhe"></div>
-                        <div class="member-info">
-                            <span class="star-name">Tian Shu &middot; The Pivot</span>
+                        <div class="label-box right-label">
+                            <span class="star-code">Tian Shu</span>
                             <h3>Ran Yang</h3>
-                            <span class="role">Physics & Systems</span>
+                            <span class="star-role">Physics & Systems</span>
                         </div>
                     </div>
 
-                    <div class="star-wrapper star-2">
-                        <div class="star merak twinkling"></div>
-                        <div class="member-info">
-                            <span class="star-name">Tian Xuan &middot; Jade Rotation</span>
+                    <div class="star-node" style="left: 70%; top: 58.3%;">
+                        <div class="star merak bright-pulse"></div>
+                        <div class="label-box right-label">
+                            <span class="star-code">Tian Xuan</span>
                             <h3>Elizabeth Mead</h3>
-                            <span class="role">Art & Sculpture</span>
+                            <span class="star-role">Art & Sculpture</span>
                         </div>
                     </div>
 
-                    <div class="star-wrapper star-3">
+                    <div class="star-node" style="left: 55%; top: 58.3%;">
                         <div class="star phecda"></div>
-                        <div class="member-info">
-                            <span class="star-name">Tian Ji &middot; Pearl</span>
+                        <div class="label-box bottom-label">
+                            <span class="star-code">Tian Ji</span>
                             <h3>Camille Andrews</h3>
-                            <span class="role">Stewardship</span>
+                            <span class="star-role">Stewardship</span>
                         </div>
                     </div>
 
-                    <div class="star-wrapper star-4">
+                    <div class="star-node" style="left: 52%; top: 33.3%;">
                         <div class="star megrez"></div>
-                        <div class="member-info">
-                            <span class="star-name">Tian Quan &middot; Balance</span>
+                        <div class="label-box top-label">
+                            <span class="star-code">Tian Quan</span>
                             <h3>Jon Pineda</h3>
-                            <span class="role">Narrative</span>
+                            <span class="star-role">Narrative</span>
                         </div>
                     </div>
 
-                    <div class="star-wrapper star-5">
+                    <div class="star-node" style="left: 40%; top: 36.6%;">
                         <div class="star alioth"></div>
-                        <div class="member-info">
-                            <span class="star-name">Yu Heng &middot; Sighting</span>
+                        <div class="label-box bottom-label">
+                            <span class="star-code">Yu Heng</span>
                             <h3>Harmony Dalgleish</h3>
-                            <span class="role">Biology</span>
+                            <span class="star-role">Biology</span>
                         </div>
                     </div>
 
-                    <div class="star-wrapper star-6">
+                    <div class="star-node" style="left: 25%; top: 41.6%;">
                         <div class="star mizar"></div>
-                        <div class="member-info">
-                            <span class="star-name">Kai Yang &middot; Opener</span>
+                        <div class="label-box bottom-label">
+                            <span class="star-code">Kai Yang</span>
                             <h3>Monica Seger</h3>
-                            <span class="role">Humanities</span>
+                            <span class="star-role">Humanities</span>
                         </div>
                     </div>
 
-                    <div class="star-wrapper star-7">
+                    <div class="star-node" style="left: 10%; top: 58.3%;">
                         <div class="star alkaid"></div>
-                        <div class="member-info">
-                            <span class="star-name">Yao Guang &middot; Brilliance</span>
+                        <div class="label-box bottom-label">
+                            <span class="star-code">Yao Guang</span>
                             <h3>Jonah Goldwater</h3>
-                            <span class="role">Metaphysics</span>
+                            <span class="star-role">Metaphysics</span>
                         </div>
                     </div>
 
-                    <svg class="constellation-lines" viewBox="0 0 800 400">
-                        <line x1="650" y1="50" x2="650" y2="150" /> <line x1="650" y1="150" x2="500" y2="150" /> <line x1="500" y1="150" x2="480" y2="50" />  <line x1="480" y1="50" x2="650" y2="50" />   <line x1="480" y1="50" x2="350" y2="60" />   <line x1="350" y1="60" x2="220" y2="80" />   <line x1="220" y1="80" x2="80" y2="150" />   <line x1="650" y1="50" x2="750" y2="-100" class="pointer-line" /> 
-                    </svg>
                 </div>
             </div>
         </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>A Strategic Inquiry for the Deep Time of Humanity.</p>
+            <p>&copy; 2026 Untitled Time Project.</p>
+            <br>
+            <a href="mailto:ryang@wm.edu" class="contact-link">Contact The Facilitator</a>
+        </div>
+    </footer>
 
     <script>
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -200,7 +216,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('h1, h2, p, blockquote, .team-member, li').forEach((el) => {
+        document.querySelectorAll('h1, h2, p, blockquote, .team-member, li, .intro-quote').forEach((el) => {
             el.classList.add('fade-in-up');
             observer.observe(el);
         });
