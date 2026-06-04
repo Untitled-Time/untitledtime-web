@@ -18,9 +18,9 @@
             top: 15vh;
             right: 5vw;
             font-size: 25vw;
-            color: rgba(60, 56, 48, 0.04);
+            color: rgba(240, 239, 233, 0.08);
             font-family: 'Ma Shan Zheng', cursive; /* Updated to Brush Style */
-            z-index: -1;
+            z-index: 3;
             pointer-events: none;
             user-select: none;
         }
@@ -31,21 +31,28 @@
     <div class="watermark-char">時</div>
 
     <header class="hero">
-        <div class="meta-data">EST. 2026 &mdash; WILLIAM &amp; MARY</div>
-        <h1>Untitled Time</h1>
-        <p class="subtitle">The Space Where the Tree Outlives the Rocket</p>
+        <figure class="hero-figure">
+            <img src="src/assets/Coquina%20Bowl.jpg" alt="The Coquina stone bowl standing in a forest clearing." width="1408" height="768" decoding="async">
+        </figure>
+        <div class="hero-copy">
+            <div class="meta-data">EST. 2026 &mdash; WILLIAM &amp; MARY</div>
+            <h1>Untitled Time</h1>
+            <p class="subtitle">A vessel that keeps no clock time.</p>
+            <p class="hero-concept">It holds three times at once — the deep time of its fossil stone, the brief time of the face it reflects, and the indeterminate transit time of a stone carried away by a stranger's hands.</p>
+        </div>
+        <div class="hero-details" role="group" aria-label="Vessel details">
+            <figure class="hero-detail">
+                <img src="src/assets/drainage%20holes.jpg" alt="Drainage holes above a mirrored surface inside the stone bowl." width="1380" height="752" decoding="async">
+                <figcaption>Mirror / holes</figcaption>
+            </figure>
+            <figure class="hero-detail">
+                <img src="src/assets/Short%20version.jpg" alt="A child-height version of the stone vessel in the forest." width="1380" height="752" decoding="async">
+                <figcaption>Child height</figcaption>
+            </figure>
+        </div>
     </header>
 
     <main>
-        <section class="content-block concept-block" aria-label="Concept">
-            <div class="sidebar">
-                <span class="marker">CONCEPT</span>
-            </div>
-            <div class="text-body">
-                <p class="concept-line">A vessel that keeps no clock time. It holds three times at once — the deep time of its fossil stone, the brief time of the face it reflects, and the indeterminate transit time of a stone carried away by a stranger's hands.</p>
-            </div>
-        </section>
-
         <section class="content-block">
             <div class="sidebar">
                 <span class="marker">01. THE EXIT</span>
@@ -110,17 +117,63 @@
                 <p>You may lift a stone from the vessel and set it down elsewhere — across the clearing, across an ocean, or never. That indeterminate journey is the only unit this clock keeps.</p>
                 <div class="vessel-gallery" role="group" aria-label="Vessel renderings">
                     <figure class="vessel-figure">
-                        <img src="src/assets/Coquina%20Bowl.jpg" alt="A carved Coquina stone vessel standing on slender supports in a wooded clearing at adult height." loading="lazy" decoding="async">
+                        <img src="src/assets/Coquina%20Bowl.jpg" alt="A carved Coquina stone vessel standing on slender supports in a wooded clearing at adult height." width="1408" height="768" loading="lazy" decoding="async">
                         <figcaption>Adult height</figcaption>
                     </figure>
                     <figure class="vessel-figure">
-                        <img src="src/assets/drainage%20holes.jpg" alt="A close view into the stone bowl, where drainage holes sit above a mirrored surface reflecting a face." loading="lazy" decoding="async">
+                        <img src="src/assets/drainage%20holes.jpg" alt="A close view into the stone bowl, where drainage holes sit above a mirrored surface reflecting a face." width="1380" height="752" loading="lazy" decoding="async">
                         <figcaption>Mirror</figcaption>
                     </figure>
                     <figure class="vessel-figure">
-                        <img src="src/assets/Short%20version.jpg" alt="A lower child-height version of the Coquina vessel standing quietly in the forest." loading="lazy" decoding="async">
+                        <img src="src/assets/Short%20version.jpg" alt="A lower child-height version of the Coquina vessel standing quietly in the forest." width="1380" height="752" loading="lazy" decoding="async">
                         <figcaption>Child height</figcaption>
                     </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block system-block" id="system">
+            <div class="sidebar">
+                <span class="marker">06. THE SYSTEM</span>
+            </div>
+            <div class="text-body">
+                <h2><span class="seal-style">北斗</span> The Walking Constellation</h2>
+                <p>College Woods becomes a ground map of the Big Dipper: seven pauses along a trail, each vessel a point of attention rather than a monument. The visitor does not read a clock. They walk a constellation slowly enough for time to change scale.</p>
+                <p>Across the Atlantic, St Andrews answers with its own stone and its own weather. William &amp; Mary and St Andrews are not set against one another; they become two historical universities holding a quiet correspondence in deep time.</p>
+                <div class="system-map" id="system-map" role="group" aria-label="Big Dipper trail and university pairing">
+                    <div class="trail-panel">
+                        <svg class="trail-svg" viewBox="0 0 720 360" role="img" aria-labelledby="trail-title trail-desc">
+                            <title id="trail-title">College Woods Big Dipper trail</title>
+                            <desc id="trail-desc">Seven vessel sites form a Big Dipper-shaped walking route through College Woods, pointing toward a paired vessel at St Andrews.</desc>
+                            <path class="woods-path" d="M 62 300 C 150 248, 198 270, 285 220 S 420 156, 510 165 S 635 130, 670 72" />
+                            <path class="dipper-path" d="M 92 282 L 205 230 L 302 214 L 430 184 L 452 300 L 610 278 L 610 158 L 430 184" />
+                            <line class="st-andrews-line" x1="610" y1="158" x2="660" y2="72" />
+                            <g class="trail-stars">
+                                <circle cx="92" cy="282" r="6" />
+                                <circle cx="205" cy="230" r="6" />
+                                <circle cx="302" cy="214" r="6" />
+                                <circle cx="430" cy="184" r="6" />
+                                <circle cx="452" cy="300" r="6" />
+                                <circle cx="610" cy="278" r="6" />
+                                <circle cx="610" cy="158" r="7" />
+                                <circle class="paired-star" cx="660" cy="72" r="8" />
+                            </g>
+                            <text x="72" y="328">COLLEGE WOODS</text>
+                            <text x="558" y="52">ST ANDREWS</text>
+                        </svg>
+                    </div>
+                    <div class="site-pairing">
+                        <div class="site-node">
+                            <span class="role-meta">Virginia</span>
+                            <h3>William &amp; Mary</h3>
+                            <p>Coquina, ~2.5 million years old. A forest vessel for faces, rain, and stones carried away.</p>
+                        </div>
+                        <div class="site-node">
+                            <span class="role-meta">Scotland</span>
+                            <h3>St Andrews</h3>
+                            <p>Carboniferous limestone, 330 million years old. A paired vessel, keeping time through another coastline.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -128,7 +181,7 @@
         <section class="constellation-section">
             <!-- TODO: Evolve the 北斗七星 / POLARIS team constellation into seven vessels in a future iteration. -->
             <div class="sidebar">
-                <span class="marker">06. THE NAVIGATORS</span>
+                <span class="marker">07. THE NAVIGATORS</span>
             </div>
 
             <div class="star-container-full">

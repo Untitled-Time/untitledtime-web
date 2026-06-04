@@ -14,6 +14,11 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 body {
     background-color: var(--bg-color);
     background-image:
@@ -32,10 +37,11 @@ h1, h2, h3, p, li { text-shadow: none; }
 
 h1 {
     font-weight: 300;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    letter-spacing: -0.04em;
+    font-size: 7rem;
+    letter-spacing: 0;
     line-height: 0.95;
     margin-bottom: 2rem;
+    overflow-wrap: anywhere;
 }
 
 h2 {
@@ -44,6 +50,8 @@ h2 {
     border-bottom: 1px solid rgba(60, 56, 48, 0.1);
     padding-bottom: 1rem;
     display: inline-block;
+    max-width: 100%;
+    overflow-wrap: break-word;
 }
 
 .meta-data, .marker, .role-meta {
@@ -66,18 +74,101 @@ h2 {
 /* LAYOUT */
 .hero {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10vw;
+    padding: 12vh 10vw 8vh;
     position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: #F0EFE9;
 }
 
 .hero::before {
     content: "";
     position: absolute;
     left: 4vw; top: 10vh; bottom: 10vh; width: 1px;
-    background: rgba(0,0,0,0.05);
+    background: rgba(240,239,233,0.18);
+    z-index: 2;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 38%, rgba(0,0,0,0.2) 72%, rgba(0,0,0,0.34) 100%),
+        linear-gradient(0deg, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0) 34%);
+    z-index: -1;
+}
+
+.hero-figure {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+
+.hero-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.7) contrast(0.92) brightness(0.82);
+}
+
+.hero-copy {
+    position: relative;
+    z-index: 4;
+    max-width: 680px;
+}
+
+.hero .meta-data {
+    color: #F0EFE9;
+    opacity: 0.82;
+}
+
+.hero .subtitle {
+    max-width: 560px;
+    color: #F0EFE9;
+}
+
+.hero-concept {
+    max-width: 620px;
+    margin-top: 2.5rem;
+    color: rgba(240, 239, 233, 0.88);
+    font-size: 1.45rem;
+    line-height: 1.45;
+    font-style: italic;
+}
+
+.hero-details {
+    position: absolute;
+    right: 10vw;
+    bottom: 7vh;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    width: min(420px, 34vw);
+}
+
+.hero-detail img {
+    display: block;
+    width: 100%;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: saturate(0.76) contrast(0.94) brightness(0.9);
+}
+
+.hero-detail figcaption {
+    margin-top: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(240, 239, 233, 0.78);
 }
 
 .content-block {
@@ -103,6 +194,14 @@ h2 {
 
 .sidebar { flex: 0 0 200px; padding-top: 15px; opacity: 0.6; }
 .text-body { flex: 1; max-width: 800px; }
+
+.text-body h2 + p {
+    margin-top: 2rem;
+}
+
+.text-body p + p {
+    margin-top: 1.25rem;
+}
 
 blockquote {
     font-size: 2.2rem;
@@ -145,6 +244,91 @@ blockquote::before {
     opacity: 0.72;
 }
 
+.system-block {
+    padding-top: 9rem;
+}
+
+.system-map {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+    gap: 3rem;
+    margin-top: 3.5rem;
+    max-width: 920px;
+}
+
+.trail-panel {
+    padding: 1rem 0 0;
+    border-top: 1px solid rgba(60, 56, 48, 0.12);
+}
+
+.trail-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.woods-path {
+    fill: none;
+    stroke: rgba(60, 56, 48, 0.14);
+    stroke-width: 20;
+    stroke-linecap: round;
+}
+
+.dipper-path {
+    fill: none;
+    stroke: rgba(60, 56, 48, 0.42);
+    stroke-width: 1.4;
+}
+
+.st-andrews-line {
+    stroke: rgba(168, 63, 57, 0.5);
+    stroke-width: 1;
+    stroke-dasharray: 5 6;
+}
+
+.trail-stars circle {
+    fill: var(--bg-color);
+    stroke: #A83F39;
+    stroke-width: 2;
+}
+
+.trail-stars .paired-star {
+    fill: #A83F39;
+    stroke: rgba(60, 56, 48, 0.4);
+}
+
+.trail-svg text {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    letter-spacing: 0.18em;
+    fill: rgba(60, 56, 48, 0.62);
+}
+
+.site-pairing {
+    align-self: center;
+    border-left: 1px solid rgba(60, 56, 48, 0.12);
+    padding-left: 2rem;
+}
+
+.site-node + .site-node {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(60, 56, 48, 0.12);
+}
+
+.site-node h3 {
+    margin-top: 0.35rem;
+    margin-bottom: 0.7rem;
+    font-size: 1.65rem;
+    font-weight: 400;
+}
+
+.site-node p {
+    font-size: 1rem;
+    color: var(--bamboo-shadow);
+}
+
 /* ---------------------------------------------------------
    HIGH CONTRAST INVERTED SECTIONS
    --------------------------------------------------------- */
@@ -180,6 +364,11 @@ blockquote::before {
     background: radial-gradient(circle at 50% 10%, #2a2a2a, #000);
     color: #fff;
     min-height: 100vh;
+}
+
+.constellation-section .marker {
+    color: #AAA;
+    opacity: 1;
 }
 
 .star-container-full { max-width: 1000px; margin: 0 auto; }
@@ -249,6 +438,7 @@ blockquote::before {
     color: #FFFFFF; /* Pure white for name labels */
     font-size: 0.8rem;
     letter-spacing: 0.1em;
+    line-height: 1.4;
 }
 
 .chn-name {
@@ -297,19 +487,81 @@ footer { padding: 6rem 10vw; background-color: #1a1a1a; color: #AAA; font-size: 
 
 /* MOBILE OPTIMIZATION */
 @media (max-width: 900px) {
-    .content-block, .constellation-section { padding: 5rem 6%; }
-    .sidebar { flex: auto; width: 100%; margin-bottom: 1.5rem; }
-    .marker { display: block; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+    body { font-size: 19px; line-height: 1.65; }
+    .hero { min-height: 100svh; padding: 6rem 6% 4rem; justify-content: center; }
+    .hero::after {
+        background:
+            linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.42) 42%, rgba(0,0,0,0.72) 100%),
+            linear-gradient(90deg, rgba(0,0,0,0.58), rgba(0,0,0,0.18));
+    }
+    .hero-copy { max-width: 92%; }
+    .hero-concept { font-size: 1.25rem; margin-top: 2rem; }
+    .hero-details {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: min(420px, 100%);
+        margin-top: 2.25rem;
+    }
+    .hero-detail img { height: 82px; }
+    .content-block, .constellation-section { padding: 5.5rem 6%; }
+    .concept-block { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .sidebar { flex: auto; width: 100%; margin-bottom: 1.5rem; padding-top: 0; }
+    .marker { display: block; border-bottom: 1px solid rgba(60, 56, 48, 0.14); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+    .inverted .marker, .constellation-section .marker { border-bottom-color: rgba(255,255,255,0.16); }
     .text-body { max-width: 100%; }
-    h1 { font-size: 3.5rem; }
-    h2 { font-size: 2.2rem; }
+    .text-body h2 + p { margin-top: 1.6rem; }
+    .text-body p + p { margin-top: 1rem; }
+    h1 { font-size: 4.8rem; }
+    h2 { font-size: 2.25rem; line-height: 1.08; }
     .concept-line { font-size: 1.35rem; }
     .vessel-gallery { gap: 0.55rem; margin-top: 2.5rem; }
     .vessel-figure img { height: 86px; }
     .vessel-figure figcaption { font-size: 0.52rem; letter-spacing: 0.08em; }
-    .polaris-label { left: 50%; top: 10%; transform: translateX(-50%); text-align: center; }
+    .system-map { grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2.75rem; }
+    .site-pairing { border-left: 0; border-top: 1px solid rgba(60, 56, 48, 0.12); padding-left: 0; padding-top: 2rem; }
+    .intro-quote { font-size: 1.2rem; margin-bottom: 3rem; }
+    .sky-panel { margin-bottom: 4rem; }
+    .constellation-svg { max-width: 100%; }
+    .polaris-label { position: static; transform: none; text-align: center; margin-top: 0.75rem; }
     .team-manifest { grid-template-columns: 1fr; gap: 2rem; }
+    .card-header { align-items: flex-start; flex-wrap: wrap; }
     blockquote { font-size: 1.5rem; margin: 3rem 0; }
     blockquote::before { left: -1rem; top: -1rem; font-size: 4rem; }
     .watermark-char { font-size: 50vw; top: 10vh; right: -10vw; opacity: 0.03; }
+}
+
+@media (max-width: 560px) {
+    body { font-size: 18px; }
+    .hero { min-height: 100svh; padding: 4.75rem 7% 3rem; }
+    .content-block, .constellation-section { padding: 4.5rem 7%; }
+    .concept-block { padding-top: 3rem; padding-bottom: 3rem; }
+    h1 { font-size: 3.2rem; line-height: 1; }
+    h2 { font-size: 1.9rem; }
+    .seal-style { margin-right: 0.35rem; }
+    .concept-line { font-size: 1.18rem; line-height: 1.5; }
+    .hero-concept { font-size: 1.08rem; line-height: 1.45; margin-top: 1.6rem; }
+    .hero-details { gap: 0.55rem; margin-top: 1.8rem; }
+    .hero-detail img { height: 66px; }
+    .hero-detail figcaption { font-size: 0.5rem; letter-spacing: 0.08em; }
+    blockquote { font-size: 1.35rem; margin: 2.5rem 0; }
+    .vessel-gallery { max-width: 100%; gap: 0.45rem; padding-top: 1rem; }
+    .vessel-figure img { height: 72px; }
+    .trail-panel { padding-top: 0.75rem; }
+    .trail-svg text { font-size: 16px; letter-spacing: 0.12em; }
+    .site-node h3 { font-size: 1.45rem; }
+    .team-card h3 { font-size: 1.55rem; }
+    .team-card .blurb { font-size: 1rem; }
+    footer { padding: 4rem 7%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-up {
+        transition: none;
+    }
+
+    .star,
+    .star.polaris-star {
+        animation: none;
+    }
 }
