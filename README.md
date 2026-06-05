@@ -1,62 +1,86 @@
-# Untitled Time: The Space Where the Tree Outlives the Rocket
+# Untitled Time
 
-> "We are building ships to escape Earth because we have forgotten how to sit still upon it."
+**Untitled Time** is a deep-time art and philosophy project about a vessel that keeps no clock time.
 
-## The Thesis
-We are currently witnessing two simultaneous accelerations: the **Artemis II** mission, representing our urge to exit the cradle of Earth, and the **Post-Labor Era**, where algorithms render human utility obsolete. 
+It holds three times at once:
 
-**Untitled Time** is an interdisciplinary inquiry and a physical proposal. It is a "Vessel" designed to hold human meaning for 100 years. If the rocket is a machine built for escape, this Vessel is a technology built for *stewardship*. It asks a singular, burning question: 
+- the deep time of its fossil stone
+- the brief time of the face it reflects
+- the indeterminate transit time of a stone carried away by a stranger's hands
 
-**In 2126, when the algorithms have long since finished our work, what will we have saved that is worth reading?**
+The public site is written as a restrained 五行 narrative with a 北斗七星 / POLARIS team constellation. Its tone is spare, contemplative, and grounded in 空 and 无为.
 
----
+## Site Structure
 
-## The Three Dimensions of Inquiry
+The page is a single scroll:
 
-### 1. The Existential Dimension: Human Flourishing in Deep Time
-The "Crisis of Patience" is not a technical problem; it is a spiritual one. True human flourishing requires a temporal horizon longer than a fiscal quarter or a political cycle. By architecting a project that matures only in a century, we force a return to "Deep Time"—the only scale on which character, virtue, and legacy truly grow. We are asking what it means to be human when we are no longer defined by our labor.
+1. **火 - The White Obelisk:** The rocket, escape, and the human urge to leave.
+2. **金 - The Silicon Silence:** Machine obsolescence and the question of meaning after labor.
+3. **木 - The Cathedral of Patience:** The seed, Future Library, and long-duration care.
+4. **水 - The Mirror:** Still water, non-contention, 五蕴皆空, and reflection as a way of seeking time.
+5. **土 - The Vessel:** The Coquina bowl, pierced mirror, St Andrews pairing, child-height vessel, and the human act of carrying a stone away.
+6. **北斗七星 - The Navigators:** The team constellation pointing toward POLARIS.
 
-### 2. The Institutional Dimension: The Archive as an Active Agent
-In the 21st century, libraries and archives are often treated as "warehouses of the past." **Untitled Time** reimagines the archive as an active, living vessel. Drawing inspiration from the *Future Library* in Oslo, we treat the William & Mary College Woods and Special Collections as a "Slow Vessel." We are not just storing knowledge; we are stewarding a 100-year conversation between the present and a future we will never see.
+## Vessel Concept
 
-### 3. The Socio-Economic Dimension: The Post-Labor Mandate
-As AI and automation decouple "income" from "meaning," humanity faces a dignity vacuum. If the 20th century was about the speed of the Rocket (escape), the 21st century must be about the roots of the Tree (stewardship). This project provides the intellectual and physical infrastructure for a society that must learn to find value in stillness and long-duration thinking.
+A stone bowl rests in a forest. It is carved from Coquina, Virginia fossil stone roughly 2.5 million years old. It holds nothing. Behind a field of drainage holes, a convex mirror returns the visitor's face against deep time.
 
----
+A second vessel is imagined at the University of St Andrews, cut from 330-million-year-old Carboniferous limestone. Each site uses its own stone as its own clock.
 
-## The Architecture of the Vessel
+The clock's unit is not seconds. It is the uncertain journey of a stone moved by a stranger's hands.
 
-This project is structured as a three-phase intellectual "Startup for the Soul":
+## Visual Assets
 
-* **Phase I: The Anchor (2026)**
-    Confronting the "Rocket" (the urge to leave) vs. the "Algorithm" (the urge to be replaced). Defining the "Earthly Values" that cannot be digitized.
-* **Phase II: The Form (2026-2027)**
-    A collaboration between Physics, Art, Biology, and Philosophy to design the physical Vessel—a structure built to withstand the elements and the erosion of human attention for 100 years.
-* **Phase III: The Framework (Long-Term)**
-    Establishing a **Centennial Trust** and a Trans-Atlantic pedagogical bridge (Scotland to Norway) to study how different cultures steward their "Deep Past" to protect their "Deep Future."
+Current vessel images live in `src/assets/`.
 
----
+Images currently used by `index.html`:
 
-## The Architects
-An unprecedented convergence of disciplines at the College of William & Mary:
-* **Ran Yang (Physics):** Systems integration, thermodynamics of time, and the "Wu Wei" of non-action.
-* **Elizabeth Mead (Art):** Sculptural form and the materiality of permanence.
-* **Camille Andrews (Libraries):** Stewardship and the preservation of the "human record."
-* **Jon Pineda (English):** The narrative arc of the next century.
-* **Harmony Dalgleish (Biology):** Arboreal time and ecological resilience.
-* **Monica Seger (Italian Studies/ENSP):** The environmental humanities and memory.
-* **Jonah Goldwater (Philosophy):** Metaphysics and the definition of the "Human" in post-labor.
+- `Coquina Bowl Forest prototype at walking scale.jpg`
+- `Pierced mirror bowl detail.jpg`
+- `Elevation and material study.jpg`
 
----
+Additional concept assets currently present:
 
-## Technical Implementation
-This repository serves as the digital log for the Vessel's development. 
+- `The constellation plan.png`
+- `The human act .png`
+
+Keep image references URL-encoded in HTML when filenames contain spaces.
+
+## Technical Notes
+
+This checkout is a static site:
+
+- `index.html`
+- `style.css`
+- `src/assets/`
+- `CNAME`
+
+There is no current `package.json` or Astro build script in this repository state. The site can be previewed with a simple static server:
+
+```bash
+python3 -m http.server 4322
+```
+
+Then open:
+
+```text
+http://127.0.0.1:4322/index.html
+```
+
+Useful checks:
+
+```bash
+npx --yes html-validate@latest index.html
+git diff --check
+```
+
+## Deployment
+
 - **Hosting:** GitHub Pages
 - **DNS:** Cloudflare
 - **Domain:** [untitledtime.org](https://untitledtime.org)
 
-## Contact & Inquiry
-We are currently seeking partners, visionaries, and foundational support to fund the initial "Phase I: The Anchor" study.
+## Contact
 
 **Facilitator:** Ran Yang  
 **Institution:** William & Mary  
