@@ -537,46 +537,62 @@ footer.site-foot {
 /* ---- inquiry form ---- */
 .foot-form {
     display: grid;
-    gap: 0.65rem;
-    margin-top: 0.15rem;
+    gap: 0;
+    margin-top: 0.5rem;
 }
 .foot-form input,
 .foot-form textarea {
+    -webkit-appearance: none;
+    appearance: none;
     background: transparent;
-    border: none;
+    border: 0;
     border-bottom: 1px solid var(--void-hair);
+    border-radius: 0;
     color: var(--void-paper);
     font-family: var(--serif);
-    font-size: 0.88rem;
-    padding: 0.38rem 0;
+    font-weight: 300;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    padding: 0.55rem 0;
     width: 100%;
     outline: none;
     resize: none;
-    transition: border-color 0.22s;
+    transition: border-color 0.28s ease;
     line-height: 1.5;
+    caret-color: var(--seal-bright);
+}
+.foot-form textarea {
+    margin-top: 0;
 }
 .foot-form input::placeholder,
 .foot-form textarea::placeholder {
-    color: rgba(237, 234, 224, 0.32);
+    color: rgba(237, 234, 224, 0.25);
     font-style: italic;
+    font-weight: 300;
 }
 .foot-form input:focus,
 .foot-form textarea:focus {
-    border-bottom-color: rgba(216, 88, 76, 0.6);
+    border-bottom-color: rgba(168, 63, 57, 0.7);
+    outline: none;
 }
 .foot-form button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-block;
     align-self: start;
     background: transparent;
     border: 1px solid var(--void-hair);
+    border-radius: 0;
     color: var(--void-faint);
     font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.2em;
+    font-size: var(--t-label);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    padding: 0.45rem 1.1rem;
+    padding: 0.5rem 1.2rem;
     cursor: pointer;
-    transition: border-color 0.22s, color 0.22s;
-    margin-top: 0.2rem;
+    transition: border-color 0.28s ease, color 0.28s ease;
+    margin-top: 1.1rem;
+    line-height: 1;
 }
 .foot-form button:hover,
 .foot-form button:focus-visible {
