@@ -128,4 +128,17 @@
   });
   render('polaris'); // default
 
+  /* ---- 5. INQUIRY FORM ------------------------------------------------- */
+  const inquiryForm = document.getElementById('foot-inquiry');
+  if (inquiryForm) {
+    inquiryForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = (inquiryForm.querySelector('[name="name"]').value || '').trim();
+      const message = (inquiryForm.querySelector('[name="message"]').value || '').trim();
+      const subject = encodeURIComponent('Untitled Time — Partnership Inquiry');
+      const body = encodeURIComponent((name ? 'From: ' + name + '\n\n' : '') + message);
+      window.location.href = 'mailto:rxyan2@wm.edu?subject=' + subject + '&body=' + body;
+    });
+  }
+
 })();

@@ -241,7 +241,11 @@ document.documentElement.classList.remove('no-js');
         <div class="foot-grid">
             <div>
                 <span class="lbl meta">Inquiry</span>
-                <a href="mailto:rxyan2@wm.edu">rxyan2@wm.edu</a>
+                <form class="foot-form" id="foot-inquiry" novalidate>
+                    <input type="text" name="name" placeholder="Your name" autocomplete="name">
+                    <textarea name="message" rows="3" placeholder="Your message"></textarea>
+                    <button type="submit">Send ↗</button>
+                </form>
             </div>
             <div>
                 <span class="lbl meta">Facilitators</span>
@@ -281,7 +285,7 @@ document.documentElement.classList.remove('no-js');
 }
 </script>
 
-<script src="scripts/site.js?v=20260606-footer-links"></script>
+<script src="scripts/site.js?v=20260606-inquiry-form"></script>
 
 </body>
 </html>
