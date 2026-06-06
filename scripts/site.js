@@ -104,15 +104,21 @@
   function render(key) {
     if (!readout || !data[key]) return;
     const d = data[key];
+    const name = d.url
+      ? '<a class="person-link" href="' + escapeAttr(d.url) + '" target="_blank" rel="noopener noreferrer">' + escape(d.name) + '</a>'
+      : escape(d.name);
     readout.innerHTML =
       '<div class="ro-star">' + escape(d.star) + '</div>' +
-      '<div class="ro-name">' + escape(d.name) + '</div>' +
+      '<div class="ro-name">' + name + '</div>' +
       '<div class="ro-role">' + escape(d.role) + '</div>' +
       '<div class="ro-blurb">' + escape(d.blurb) + '</div>';
     nodes.forEach((n) => n.classList.toggle('active', n.getAttribute('data-key') === key));
   }
   function escape(s) {
     const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+  }
+  function escapeAttr(s) {
+    return escape(s).replace(/"/g, '&quot;');
   }
   nodes.forEach((n) => {
     const key = n.getAttribute('data-key');
