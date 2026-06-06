@@ -1,0 +1,114 @@
+/* =========================================================================
+   UNTITLED TIME — art directions
+   Three explorable directions sharing one DNA. Toggle via
+   <html data-direction="quiet | void | atlas">. Default = quiet.
+   ========================================================================= */
+
+/* =========================================================================
+   DIRECTION 1 · QUIET   — refined editorial paper (the base, lightly tuned)
+   ========================================================================= */
+[data-direction="quiet"] {
+    --accent: oklch(0.52 0.13 calc(var(--accent-h) * 1deg));
+    --seal-bright: oklch(0.62 0.15 calc(var(--accent-h) * 1deg));
+}
+[data-direction="quiet"] .hero h1 { font-weight: 300; }
+[data-direction="quiet"] .pull { letter-spacing: -0.01em; }
+
+/* =========================================================================
+   DIRECTION 2 · VOID   — dark gallery. Stone & mirror glow out of black.
+   Paper sections invert to charcoal "lantern" panels for rhythm.
+   ========================================================================= */
+[data-direction="void"] {
+    --paper:        #100F0C;
+    --paper-deep:   #18160F;
+    --ink:          #ECE7DB;
+    --ink-soft:     #C9C3B2;
+    --ink-faint:    rgba(236,231,219,0.55);
+    --hair:         rgba(236,231,219,0.16);
+    --hair-soft:    rgba(236,231,219,0.09);
+    --accent:       oklch(0.66 0.16 calc(var(--accent-h) * 1deg));
+    --seal-bright:  oklch(0.72 0.16 calc(var(--accent-h) * 1deg));
+    --grain-opacity: 0.35;
+}
+[data-direction="void"] body {
+    background-color: var(--paper);
+    background-image:
+        var(--tex-fibers),
+        radial-gradient(140% 100% at 50% -10%, #1c1b13 0%, #100F0C 55%, #0a0908 100%);
+    background-blend-mode: soft-light, normal;
+}
+[data-direction="void"] ::selection { background: var(--accent); color: #100F0C; }
+/* the "inverted" band becomes a lighter charcoal lantern, not black-on-black */
+[data-direction="void"] .inverted {
+    background: linear-gradient(180deg, #1d1c15 0%, #161510 100%);
+    color: var(--ink);
+}
+[data-direction="void"] .inverted .lead { color: var(--ink-soft); }
+[data-direction="void"] .inverted .marker,
+[data-direction="void"] .inverted figcaption { color: var(--ink-faint); }
+[data-direction="void"] .concept { border-color: var(--hair); }
+[data-direction="void"] .watermark { color: #ECE7DB; opacity: 0.05; }
+[data-direction="void"] .feature-figure img { filter: saturate(0.86) contrast(1.02) brightness(0.92); box-shadow: 0 40px 90px -40px #000; }
+[data-direction="void"] .gallery .figure img { box-shadow: 0 20px 50px -30px #000; }
+/* a faint starfield over the hero */
+[data-direction="void"] .hero {
+    background-image:
+        radial-gradient(1px 1px at 18% 30%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 72% 18%, rgba(205,221,255,0.5), transparent),
+        radial-gradient(1.4px 1.4px at 46% 64%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1px 1px at 88% 52%, rgba(255,221,170,0.5), transparent),
+        radial-gradient(1px 1px at 32% 80%, rgba(255,255,255,0.35), transparent);
+}
+
+/* =========================================================================
+   DIRECTION 3 · ATLAS   — survey / almanac. Coordinate grid, mono-forward,
+   ink-blue secondary, diagrammatic rigor.
+   ========================================================================= */
+[data-direction="atlas"] {
+    --accent:       oklch(0.52 0.13 calc(var(--accent-h) * 1deg));
+    --seal-bright:  oklch(0.62 0.15 calc(var(--accent-h) * 1deg));
+    --blue:         oklch(0.52 0.09 245);
+    --grid:         rgba(27,26,22,0.05);
+}
+[data-direction="atlas"] body {
+    background-color: var(--paper);
+    background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        var(--tex-fibers),
+        radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,0.6), rgba(214,208,194,0.3));
+    background-size: 48px 48px, 48px 48px, auto, auto;
+    background-blend-mode: normal, normal, multiply, normal;
+}
+/* coordinate tick on every section rail */
+[data-direction="atlas"] .section > .rail .marker::before {
+    content: "+";
+    position: absolute;
+    left: -1.4rem; top: -0.2rem;
+    color: var(--blue);
+    font-family: var(--mono);
+    opacity: 0.6;
+}
+[data-direction="atlas"] .marker .idx { color: var(--blue); }
+[data-direction="atlas"] h2.head {
+    font-family: var(--serif);
+    border-bottom: 1px solid var(--hair);
+    padding-bottom: 0.7rem;
+}
+[data-direction="atlas"] .lead { font-style: normal; }
+[data-direction="atlas"] blockquote { border-left-width: 2px; }
+[data-direction="atlas"] .depth-card .place,
+[data-direction="atlas"] figcaption .num { color: var(--blue); }
+[data-direction="atlas"] .ruler .fill { background: linear-gradient(90deg, var(--blue), var(--accent)); }
+[data-direction="atlas"] .yi-cell { border-top-color: var(--blue); }
+[data-direction="atlas"] .hero-meta .rule { background: var(--blue); }
+[data-direction="atlas"] .pull { font-style: normal; letter-spacing: -0.015em; }
+/* corner crop marks on feature figures, like a plate in an atlas */
+[data-direction="atlas"] .feature-figure { position: relative; }
+[data-direction="atlas"] .feature-figure::before,
+[data-direction="atlas"] .feature-figure::after {
+    content: ""; position: absolute; width: 14px; height: 14px;
+    border: 1px solid var(--blue); opacity: 0.5;
+}
+[data-direction="atlas"] .feature-figure::before { left: -6px; top: -6px; border-right: 0; border-bottom: 0; }
+[data-direction="atlas"] .feature-figure::after { right: -6px; bottom: -6px; border-left: 0; border-top: 0; }

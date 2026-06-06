@@ -1,61 +1,72 @@
 # Untitled Time
 
-**Untitled Time** is a deep-time art and philosophy project about a vessel that keeps no clock time.
+**Untitled Time** is a static web presentation for a deep-time public art and philosophy project: a network of stone vessels that hold nothing, read time through absence, and invite visitors to begin durations that may be completed by someone else.
 
-It holds three times at once:
+The site is a single-page, editorial scroll for the William & Mary and St Andrews project. It frames the vessel as an instrument built around emptiness: fossil stone, pierced surfaces, reflected faces, rain, transit, and a Big Dipper / Polaris constellation of collaborators and sites.
 
-- the deep time of its fossil stone
-- the brief time of the face it reflects
-- the indeterminate transit time of a stone carried away by a stranger's hands
+## Project Shape
 
-The public site is written as a restrained 五行 narrative with a 北斗七星 / POLARIS team constellation. Its tone is spare, contemplative, and grounded in 空 and 无为.
+The page moves through these sections:
 
-## Site Structure
+1. **Hero:** Untitled Time as a hundred-year question between William & Mary and St Andrews.
+2. **Concept:** transit time as the open interval between letting something go and its coming to rest.
+3. **The Untitled Duration:** the human act of carrying a stone away.
+4. **The Functional Void:** a bowl that keeps time by holding nothing.
+5. **Landscape Infrastructure:** seven draining bowls arranged as the Big Dipper, anchored by a Polaris basin.
+6. **The Navigators:** an interactive constellation readout for the project team.
+7. **Cosmic Deep-Time Twist:** Polaris as a temporary north, already moving through axial precession.
+8. **The Vessel:** Coquina at College Woods, Carboniferous limestone at St Andrews, and two human scales for adult and child encounters.
 
-The page is a single scroll:
+## Repository Structure
 
-1. **火 - The White Obelisk:** The rocket, escape, and the human urge to leave.
-2. **金 - The Silicon Silence:** Machine obsolescence and the question of meaning after labor.
-3. **木 - The Cathedral of Patience:** The seed, Future Library, and long-duration care.
-4. **水 - The Mirror:** Still water, non-contention, 五蕴皆空, and reflection as a way of seeking time.
-5. **土 - The Vessel:** The Coquina bowl, pierced mirror, St Andrews pairing, child-height vessel, and the human act of carrying a stone away.
-6. **北斗七星 - The Navigators:** The team constellation pointing toward POLARIS.
+```text
+index.html
+styles/
+  base.css
+  components.css
+  directions.css
+scripts/
+  site.js
+src/assets/
+CNAME
+```
 
-## Vessel Concept
-
-A stone bowl rests in a forest. It is carved from Coquina, Virginia fossil stone roughly 2.5 million years old. It holds nothing. Behind a field of drainage holes, a convex mirror returns the visitor's face against deep time.
-
-A second vessel is imagined at the University of St Andrews, cut from 330-million-year-old Carboniferous limestone. Each site uses its own stone as its own clock.
-
-The clock's unit is not seconds. It is the uncertain journey of a stone moved by a stranger's hands.
+There is no build step or package manifest in the current repository state. GitHub Pages can serve the site directly from the root `index.html`.
 
 ## Visual Assets
 
-Current vessel images live in `src/assets/`.
+Current image assets live in `src/assets/`.
 
-Images currently used by `index.html`:
+Images used by the page:
 
-- `Coquina Bowl Forest prototype at walking scale.jpg`
+- `The human act.png`
 - `Pierced mirror bowl detail.jpg`
-- `Elevation and material study.jpg`
-
-Additional concept assets currently present:
-
 - `The constellation plan.png`
-- `The human act .png`
+- `Elevation and material study.jpg`
+- `Coquina Bowl Forest prototype at walking scale.jpg`
+- `Short version.jpg`
 
-Keep image references URL-encoded in HTML when filenames contain spaces.
+Additional support asset:
 
-## Technical Notes
+- `drainage holes.jpg`
 
-This checkout is a static site:
+Keep paths URL-safe when adding new image references. Spaces work in quoted HTML/CSS paths, but simpler filenames are easier to maintain.
 
-- `index.html`
-- `style.css`
-- `src/assets/`
-- `CNAME`
+## Responsive Behavior
 
-There is no current `package.json` or Astro build script in this repository state. The site can be previewed with a simple static server:
+The site is built as a responsive static page:
+
+- the two-column section rail collapses into a single-column mobile layout below `900px`
+- geology cards and I Ching cells stack below `720px`
+- hero credits, figure captions, constellation readouts, and vessel height cards tighten below `640px`
+- feature images use shorter mobile heights to avoid oversized crops on small screens
+- fixed paper texture scrolling is disabled on narrow mobile viewports
+- reveal animations respect `prefers-reduced-motion`
+- a `no-js` fallback keeps content visible if JavaScript is disabled
+
+## Local Preview
+
+Run a simple static server from the repository root:
 
 ```bash
 python3 -m http.server 4322
@@ -64,21 +75,24 @@ python3 -m http.server 4322
 Then open:
 
 ```text
-http://127.0.0.1:4322/index.html
+http://127.0.0.1:4322/
 ```
 
-Useful checks:
+## Useful Checks
 
 ```bash
 npx --yes html-validate@latest index.html
 git diff --check
 ```
 
+For layout review, open the local server in desktop and mobile widths and check the hero, constellation, figures, and footer.
+
 ## Deployment
 
 - **Hosting:** GitHub Pages
 - **DNS:** Cloudflare
 - **Domain:** [untitledtime.org](https://untitledtime.org)
+- **Entry point:** `index.html`
 
 ## Contact
 
